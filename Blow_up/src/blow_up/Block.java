@@ -16,6 +16,11 @@ public class Block {
 
     protected BufferedImage sprite;
     protected double x, y;
+    
+    private boolean gen_up = false, gen_down = false, gen_right = false, gen_left = false;
+    
+    
+    
 
     public Block() {
         try {
@@ -33,10 +38,38 @@ public class Block {
 
     public void rendu(Graphics2D contexte) {
         contexte.drawImage(this.sprite, (int) x, (int) y, null);
+        
+        //GENERATION ALEATOIRE
+        if(Math.random()>0.5f) {
+            gen_up = true;
+        }
+        if(Math.random()>0.5f) {
+            gen_down = true;
+        }
+        if(Math.random()>0.5f) {
+            gen_right = true;
+        }
+        if(Math.random()>0.5f){
+            gen_left = true;
+        }
+        
+        //DRAW
+        if(gen_up){
+            contexte.drawImage(this.sprite, (int) x, (int) y-64, null);
+        }
+        if(gen_down){
+            contexte.drawImage(this.sprite, (int) x, (int) y+64, null);
+        }
+        if(gen_left){
+            contexte.drawImage(this.sprite, (int) x-64, (int) y, null);
+        }
+        if(gen_right){
+            contexte.drawImage(this.sprite, (int) x+64, (int) y, null);
+        }
     }
 
     public void lancer() {
-        this.x = 15 + Math.random() * 330;
+        this.x = 10 + Math.random() * 600;
         this.y = -27;
     }
 

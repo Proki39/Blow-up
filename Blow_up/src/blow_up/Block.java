@@ -23,6 +23,7 @@ public class Block {
         } catch (IOException ex) {
             Logger.getLogger(Block.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
         lancer();
     }
 

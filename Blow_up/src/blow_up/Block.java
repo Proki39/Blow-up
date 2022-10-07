@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package blow_up;
 
 import java.awt.Graphics2D;
@@ -13,9 +8,9 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
 /**
- * Exemple de classe lutin
+ * 
  *
- * @author guillaume.laurent
+ * @author rafaelorita
  */
 public class Block {
 

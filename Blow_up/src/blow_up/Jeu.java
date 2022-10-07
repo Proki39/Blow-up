@@ -13,10 +13,12 @@ import java.awt.Graphics2D;
 public class Jeu {
     
     Block uneBlock = new Block();
+    Carte uneCarte = new Carte();
     
     public void rendu(Graphics2D contexte) { 
         
         // 1. Rendu du décor
+        uneCarte.rendu(contexte);
         // 2. Rendu des sprites
         uneBlock.rendu(contexte);
         // 3. Rendu des textes

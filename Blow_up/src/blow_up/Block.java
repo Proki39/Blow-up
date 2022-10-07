@@ -19,7 +19,7 @@ public class Block {
 
     public Block() {
         try {
-            this.sprite = ImageIO.read(getClass().getResource("../resources/block_test.png"));
+            this.sprite = ImageIO.read(getClass().getResource("../ressources/block_test.png"));
         } catch (IOException ex) {
             Logger.getLogger(Block.class.getName()).log(Level.SEVERE, null, ex);
         }

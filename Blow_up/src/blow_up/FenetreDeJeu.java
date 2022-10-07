@@ -30,11 +30,11 @@ public class FenetreDeJeu extends JFrame implements ActionListener, KeyListener 
     public FenetreDeJeu() {
         
         // initialisation de la fenetre
-        this.setSize(800, 600); 
+        this.setSize(1040, 600); 
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
         this.jLabel1 = new JLabel();
-        this.jLabel1.setPreferredSize(new java.awt.Dimension(800, 600)); 
+        this.jLabel1.setPreferredSize(new java.awt.Dimension(1040, 600)); 
         this.setContentPane(this.jLabel1);
         this.pack();
         

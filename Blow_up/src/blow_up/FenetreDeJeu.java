@@ -26,6 +26,7 @@ public class FenetreDeJeu extends JFrame implements ActionListener, KeyListener 
     private JLabel jLabel1;
     private Jeu jeu;
     private Timer timer;
+    private Joueur Joueur;
     
     public FenetreDeJeu() {
         
@@ -49,6 +50,7 @@ public class FenetreDeJeu extends JFrame implements ActionListener, KeyListener 
         // Creation du Timer qui appelle this.actionPerformed() tous les 40 ms
         this.timer = new Timer(40, this);
         this.timer.start();
+        this. addKeyListener (this);
         }
         // Methode appelee par le timer et qui effectue la boucle de jeu
         @Override
@@ -61,23 +63,34 @@ public class FenetreDeJeu extends JFrame implements ActionListener, KeyListener 
         }
     
     
-    public static void main(String[] args) {
-        FenetreDeJeu fenetre = new FenetreDeJeu(); 
+    @Override
+    public void keyTyped(KeyEvent e) {
+       
+    }
+
+    @Override
+    public void keyPressed(KeyEvent evt) {
+        if (evt.getKeyCode() == evt.VK_RIGHT) {
+            this.jeu.joueur.setDroite(true);
+        }
+        if (evt.getKeyCode() == evt.VK_LEFT) {
+            this.jeu.joueur.setGauche(true);
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent evt) {
+         if (evt.getKeyCode() == evt.VK_RIGHT) {
+            this.jeu.joueur.setDroite(false);
+        }
+        if (evt.getKeyCode() == evt.VK_LEFT) {
+            this.jeu.joueur.setGauche(false);
+        }
+    }
+    
+     public static void main(String[] args) {
+        FenetreDeJeu fenetre = new FenetreDeJeu();
         fenetre.setVisible(true);
     }
 
-    @Override
-    public void keyTyped(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }

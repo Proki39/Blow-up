@@ -78,10 +78,10 @@ public class FenetreDeJeu extends JFrame implements ActionListener, KeyListener 
             this.jeu.unJoueur.setGauche(true);
         }
         if (evt.getKeyCode() == evt.VK_UP) {
-            this.jeu.unJoueur.setBas(true);
+            this.jeu.unJoueur.setHaut(true);
         }
         if (evt.getKeyCode() == evt.VK_DOWN) {
-            this.jeu.unJoueur.setHaut(true);
+            this.jeu.unJoueur.setBas(true);
         }
     }
 
@@ -94,10 +94,10 @@ public class FenetreDeJeu extends JFrame implements ActionListener, KeyListener 
             this.jeu.unJoueur.setGauche(false);
         }
         if (evt.getKeyCode() == evt.VK_UP) {
-            this.jeu.unJoueur.setBas(false);
+            this.jeu.unJoueur.setHaut(false);
         }
         if (evt.getKeyCode() == evt.VK_DOWN) {
-            this.jeu.unJoueur.setHaut(false);
+            this.jeu.unJoueur.setBas(false);
         }
     }
         

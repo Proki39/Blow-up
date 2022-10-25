@@ -30,7 +30,7 @@ public class Joueur {
             Logger.getLogger(Joueur.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.x = 520;
-        this.y = 364;
+        this.y = 0;
         this.gauche = false;
         this.droite = false;
         this.bas = false;
@@ -40,10 +40,10 @@ public class Joueur {
 
     public void miseAJour() {
         if (this.gauche) {
-            x -=104;
+            x -=10;
         }
         if (this.droite) {
-            x += 104;
+            x += 10;
         }
         if (x > 1040 - sprite.getWidth()) { // collision avec le bord droit de la scene
             x = 1040 - sprite.getWidth();
@@ -52,17 +52,12 @@ public class Joueur {
             x = 0;
         }
         if(this.bas){
-            y-=104;
+            y+=10;
         }
         if(this.haut){
-            y+=104;
+            y-=10;
         }
-        if(y>10400-sprite.getWidth()){
-            y=10400-sprite.getWidth();
-        }
-        if(y<0){
-            y=0;
-        }
+       
 
     }
 

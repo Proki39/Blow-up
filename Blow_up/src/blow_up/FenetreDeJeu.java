@@ -31,11 +31,11 @@ public class FenetreDeJeu extends JFrame implements ActionListener, KeyListener 
     public FenetreDeJeu() {
         
         // initialisation de la fenetre
-        this.setSize(1040, 600); 
+        this.setSize(1040, 728); 
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
         this.jLabel1 = new JLabel();
-        this.jLabel1.setPreferredSize(new java.awt.Dimension(1040, 600)); 
+        this.jLabel1.setPreferredSize(new java.awt.Dimension(1040, 728)); 
         this.setContentPane(this.jLabel1);
         this.pack();
         
@@ -77,6 +77,12 @@ public class FenetreDeJeu extends JFrame implements ActionListener, KeyListener 
         if (evt.getKeyCode() == evt.VK_LEFT) {
             this.jeu.unJoueur.setGauche(true);
         }
+        if (evt.getKeyCode() == evt.VK_UP) {
+            this.jeu.unJoueur.setBas(true);
+        }
+        if (evt.getKeyCode() == evt.VK_DOWN) {
+            this.jeu.unJoueur.setHaut(true);
+        }
     }
 
     @Override
@@ -87,7 +93,18 @@ public class FenetreDeJeu extends JFrame implements ActionListener, KeyListener 
         if (evt.getKeyCode() == evt.VK_LEFT) {
             this.jeu.unJoueur.setGauche(false);
         }
+        if (evt.getKeyCode() == evt.VK_UP) {
+            this.jeu.unJoueur.setBas(false);
+        }
+        if (evt.getKeyCode() == evt.VK_DOWN) {
+            this.jeu.unJoueur.setHaut(false);
+        }
     }
+        
+    
+
+
+    
     
      public static void main(String[] args) {
         FenetreDeJeu fenetre = new FenetreDeJeu();

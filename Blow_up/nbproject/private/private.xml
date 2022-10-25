@@ -1,9 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+        <file>
+            <url>src/blow_up/FenetreDeJeu.java</url>
+            <bookmark id="1">
+                <name/>
+                <line>16</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/lucienboulard/Documents/GitHub/Blow_up/src/blow_up/Blow_up.java</file>
+            <file>file:/Users/lucienboulard/Documents/GitHub/Blow-up/Blow_up/src/blow_up/FenetreDeJeu.java</file>
+            <file>file:/Users/lucienboulard/Documents/GitHub/Blow-up/Blow_up/src/blow_up/Block.java</file>
+            <file>file:/Users/lucienboulard/Documents/GitHub/Blow-up/Blow_up/src/blow_up/Blow_up.java</file>
+            <file>file:/Users/lucienboulard/Documents/GitHub/Blow-up/Blow_up/src/blow_up/Carte.java</file>
+            <file>file:/Users/lucienboulard/Documents/GitHub/Blow-up/Blow_up/src/ressources/Map.txt</file>
+            <file>file:/Users/lucienboulard/Documents/GitHub/Blow-up/Blow_up/src/blow_up/Jeu.java</file>
         </group>
     </open-files>
 </project-private>

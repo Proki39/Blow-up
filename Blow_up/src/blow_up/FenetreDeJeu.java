@@ -55,7 +55,8 @@ public class FenetreDeJeu extends JFrame implements ActionListener, KeyListener 
         // Methode appelee par le timer et qui effectue la boucle de jeu
         @Override
         public void actionPerformed(ActionEvent e) {
-            this.jeu.miseAJour(); this.jeu.rendu(contexte);
+            this.jeu.miseAJour(); 
+            this.jeu.rendu(contexte);
             this.jLabel1.repaint();
             if (this.jeu.estTermine()) {
                 this.timer.stop(); 
@@ -71,20 +72,20 @@ public class FenetreDeJeu extends JFrame implements ActionListener, KeyListener 
     @Override
     public void keyPressed(KeyEvent evt) {
         if (evt.getKeyCode() == evt.VK_RIGHT) {
-            this.jeu.joueur.setDroite(true);
+            this.jeu.unJoueur.setDroite(true);
         }
         if (evt.getKeyCode() == evt.VK_LEFT) {
-            this.jeu.joueur.setGauche(true);
+            this.jeu.unJoueur.setGauche(true);
         }
     }
 
     @Override
     public void keyReleased(KeyEvent evt) {
          if (evt.getKeyCode() == evt.VK_RIGHT) {
-            this.jeu.joueur.setDroite(false);
+            this.jeu.unJoueur.setDroite(false);
         }
         if (evt.getKeyCode() == evt.VK_LEFT) {
-            this.jeu.joueur.setGauche(false);
+            this.jeu.unJoueur.setGauche(false);
         }
     }
     

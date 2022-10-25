@@ -16,27 +16,26 @@ import javax.imageio.ImageIO;
  * @author lucienboulard
  */
 public class Jeu {
+    Joueur unJoueur = new Joueur();
+    Carte uneCarte = new Carte();
+   
+         
     
-    private BufferedImage fond;
-    public Joueur joueur;
-    
-    public void jeu() { 
-        try {
-            this.fond = ImageIO.read(getClass().getClassLoader().getResource("resources/jungle.png"));
-        } catch (IOException ex) {
-            Logger.getLogger(Jeu.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        this.joueur = new Joueur();
-    }
+    public void rendu(Graphics2D contexte) {
+        uneCarte.rendu(contexte);
+        unJoueur.rendu(contexte);
         // 1. Rendu du décor
         //uneCarte.rendu(contexte);
         // 2. Rendu des sprites
         //uneBlock.rendu(contexte);
         // 3. Rendu des textes
+    }
+        
     
     
     public void miseAJour () {
-         this.joueur.miseAJour();
+
+       unJoueur.miseAJour();
         // 1. Mise à jour de l’avatar en fonction des commandes des joueurs
         // 2. Mise à jour des autres éléments (objets, monstres, etc.)
         //uneBlock.miseAJour();
@@ -49,9 +48,6 @@ public class Jeu {
         return false; 
     }
     
-    public void rendu(Graphics2D contexte) {
-        contexte.drawImage(this.fond, 0, 0, null);
-        this.joueur.rendu(contexte);
-    }
+    
     
 }

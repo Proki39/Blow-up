@@ -34,7 +34,7 @@ public class Jeu {
     
     
     public void miseAJour () {
-
+       uneCarte.miseAJour();
        unJoueur.miseAJour();
         // 1. Mise à jour de l’avatar en fonction des commandes des joueurs
         // 2. Mise à jour des autres éléments (objets, monstres, etc.)

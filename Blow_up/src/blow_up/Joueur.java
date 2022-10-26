@@ -30,7 +30,7 @@ public class Joueur {
             Logger.getLogger(Joueur.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.x = 520;
-        this.y = 0;
+        this.y = 10400;
         this.gauche = false;
         this.droite = false;
         this.bas = false;
@@ -52,17 +52,19 @@ public class Joueur {
             x = 0;
         }
         if(this.bas){
-            y+=10;
+            y+=104;
+            
         }
         if(this.haut){
-            y-=10;
+            y-=104;
+          
         }
        
 
     }
 
     public void rendu(Graphics2D contexte) {
-        contexte.drawImage(this.sprite, (int) x, (int) y, null);
+        contexte.drawImage(this.sprite, (int) x, (int) y- 93*104 , null);
     }
 
     public void setGauche(boolean gauche) {

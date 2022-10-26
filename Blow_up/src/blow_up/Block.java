@@ -24,10 +24,14 @@ public class Block {
 
     public Block() {
         try {
-            this.sprite = ImageIO.read(getClass().getResource("../ressources/block_test.png"));
+            this.sprite = ImageIO.read(getClass().getResource("../resources/block_test.png"));
         } catch (IOException ex) {
             Logger.getLogger(Block.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        
+        //GENERATION ALEATOIRE 
+        genRandom();
         
         lancer();
     }
@@ -38,20 +42,7 @@ public class Block {
 
     public void rendu(Graphics2D contexte) {
         contexte.drawImage(this.sprite, (int) x, (int) y, null);
-        
-        //GENERATION ALEATOIRE
-        if(Math.random()>0.5f) {
-            gen_up = true;
-        }
-        if(Math.random()>0.5f) {
-            gen_down = true;
-        }
-        if(Math.random()>0.5f) {
-            gen_right = true;
-        }
-        if(Math.random()>0.5f){
-            gen_left = true;
-        }
+      
         
         //DRAW
         if(gen_up){
@@ -88,6 +79,24 @@ public class Block {
     public double getHauteur() {
         return sprite.getWidth();
     }
+    
+    
+    private void genRandom(){
+        
+        if(Math.random()>0.5f) {
+            gen_up = true;
+        }
+        if(Math.random()>0.5f) {
+            gen_down = true;
+        }
+        if(Math.random()>0.5f) {
+            gen_right = true;
+        }
+        if(Math.random()>0.5f){
+            gen_left = true;
+        }
+    }
+    
 
 }
 

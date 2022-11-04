@@ -21,29 +21,54 @@ public class Joueur {
 
     protected BufferedImage sprite;
     protected double x, y;
-    private boolean gauche, droite, bas, haut;
+    private boolean gauche, droite, bas, haut, saut;
+    public static int tempsSaut = 1 ; 
+  
 
     public Joueur() {
-        try {
-            this.sprite = ImageIO.read(getClass().getResource("../resources/sprite.png"));
-        } catch (IOException ex) {
-            Logger.getLogger(Joueur.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        this.x = 520;
-        this.y = 10400;
+        this.x = 540;
+        this.y = 10300;
         this.gauche = false;
         this.droite = false;
         this.bas = false;
         this.haut = false;
+        this.saut = false;
 
+        try {
+        	this.sprite = ImageIO.read(getClass().getClassLoader().getResource("resources/spritemiroir.png"));            
+        	} catch (IOException ex) {
+            Logger.getLogger(Joueur.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
+    
+   public void gravite() {
+	   if (this.getY() + sprite.getWidth() <= 10400) {
+			   this.setY(this.getY() + 5);
+			  
+	   }
+	   if (this.getY() + sprite.getWidth() > 10400) {
+		   		this.setY(10400-sprite.getHeight());
+		   		
+		   		
+	   }
+   }
 
     public void miseAJour() {
         if (this.gauche) {
             x -=10;
+            try {
+            	this.sprite = ImageIO.read(getClass().getClassLoader().getResource("resources/spritemiroir.png"));
+        		} catch (IOException ex) {
+        		Logger.getLogger(Joueur.class.getName()).log(Level.SEVERE, null, ex);
+        		}     
         }
         if (this.droite) {
             x += 10;
+            try {    	
+        		this.sprite = ImageIO.read(getClass().getClassLoader().getResource("resources/sprite.png"));
+        		} catch (IOException ex) {
+        			Logger.getLogger(Joueur.class.getName()).log(Level.SEVERE, null, ex);
+        		}
         }
         if (x > 1040 - sprite.getWidth()) { // collision avec le bord droit de la scene
             x = 1040 - sprite.getWidth();
@@ -52,13 +77,25 @@ public class Joueur {
             x = 0;
         }
         if(this.bas){
-            y+=104;
+            y+=10;
             
         }
         if(this.haut){
-            y-=104;
-          
+            y-=10;
+         
         }
+        this.gravite();
+        if (this.saut) {
+        	this.setY(this.getY()- 30);
+        	tempsSaut--;
+        	if (tempsSaut <= 0) {
+        		this.setSaut(false);
+        	}
+        	
+        }
+         
+       
+       
        
 
     }
@@ -80,6 +117,13 @@ public class Joueur {
     public void setBas(boolean bas) {
         this.bas = bas;
     }
+    public void setSaut(boolean saut) {
+        this.saut = saut;
+    }
+    
+    public void setY(double y) {
+        this.y = y;
+    }
 
     public double getX() {
         return x;
@@ -96,5 +140,7 @@ public class Joueur {
     public double getHauteur() {
         return sprite.getWidth();
     }
+    
+    
 
 }

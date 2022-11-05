@@ -57,7 +57,7 @@ public class Joueur {
         if (this.gauche) {
             x -=10;
             try {
-            	this.sprite = ImageIO.read(getClass().getClassLoader().getResource("resources/spritemiroir.png"));
+            	this.sprite = ImageIO.read(getClass().getClassLoader().getResource("resources/sprite.png"));
         		} catch (IOException ex) {
         		Logger.getLogger(Joueur.class.getName()).log(Level.SEVERE, null, ex);
         		}     

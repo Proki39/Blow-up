@@ -74,32 +74,32 @@ public class FenetreDeJeu extends JFrame implements ActionListener, KeyListener 
     @Override
     public void keyPressed(KeyEvent evt) {
         if (evt.getKeyCode() == evt.VK_RIGHT) {
-            this.jeu.unJoueur.setDroite(true);
+            this.jeu.getUnJoueur().setDroite(true);
         }
         if (evt.getKeyCode() == evt.VK_LEFT) {
-            this.jeu.unJoueur.setGauche(true);
+            this.jeu.getUnJoueur().setGauche(true);
         }
         if (evt.getKeyCode() == evt.VK_UP) {
-            this.jeu.unJoueur.setHaut(true);
+            this.jeu.getUnJoueur().setHaut(true);
         }
         if (evt.getKeyCode() == evt.VK_DOWN) {
-            this.jeu.unJoueur.setBas(true);
+            this.jeu.getUnJoueur().setBas(true);
         }
     }
 
     @Override
     public void keyReleased(KeyEvent evt) {
          if (evt.getKeyCode() == evt.VK_RIGHT) {
-            this.jeu.unJoueur.setDroite(false);
+            this.jeu.getUnJoueur().setDroite(false);
         }
         if (evt.getKeyCode() == evt.VK_LEFT) {
-            this.jeu.unJoueur.setGauche(false);
+            this.jeu.getUnJoueur().setGauche(false);
         }
         if (evt.getKeyCode() == evt.VK_UP) {
-            this.jeu.unJoueur.setHaut(false);
+            this.jeu.getUnJoueur().setHaut(false);
         }
         if (evt.getKeyCode() == evt.VK_DOWN) {
-            this.jeu.unJoueur.setBas(false);
+            this.jeu.getUnJoueur().setBas(false);
         }
     }
         

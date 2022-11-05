@@ -16,8 +16,14 @@ import javax.imageio.ImageIO;
  * @author lucienboulard
  */
 public class Jeu {
-    Joueur unJoueur = new Joueur();
-    Carte uneCarte = new Carte();
+    private Joueur unJoueur;
+    private Carte uneCarte;
+
+    public Jeu() {    
+    this.unJoueur = new Joueur();
+    this.uneCarte = new Carte();
+    }
+
    
          
     
@@ -46,6 +52,14 @@ public class Jeu {
         
         // Renvoie vrai si la partie est terminée (gagnée ou perdue)
         return false; 
+    }
+
+    public Joueur getUnJoueur() {
+        return unJoueur;
+    }
+
+    public Carte getUneCarte() {
+        return uneCarte;
     }
     
     

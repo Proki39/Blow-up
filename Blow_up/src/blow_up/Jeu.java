@@ -18,10 +18,12 @@ import javax.imageio.ImageIO;
 public class Jeu {
     private Joueur unJoueur;
     private Carte uneCarte;
+    public Block unBlock;
 
     public Jeu() {    
-    this.unJoueur = new Joueur();
     this.uneCarte = new Carte();
+    this.unBlock = new Block();
+    this.unJoueur = new Joueur(this.unBlock);
     }
 
    
@@ -30,6 +32,7 @@ public class Jeu {
     public void rendu(Graphics2D contexte) {
         uneCarte.rendu(contexte);
         unJoueur.rendu(contexte);
+        unBlock.rendu(contexte);
         // 1. Rendu du décor
         //uneCarte.rendu(contexte);
         // 2. Rendu des sprites
@@ -41,7 +44,9 @@ public class Jeu {
     
     public void miseAJour () {
        uneCarte.miseAJour();
+       unBlock.miseAJour();
        unJoueur.miseAJour();
+       
         // 1. Mise à jour de l’avatar en fonction des commandes des joueurs
         // 2. Mise à jour des autres éléments (objets, monstres, etc.)
         //uneBlock.miseAJour();

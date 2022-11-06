@@ -38,6 +38,11 @@ public class Block {
 
     public void miseAJour() {
         y = y + 5;
+
+        if(gen_down && y>=728-getLargeur()-64)      //Colision avec le sol
+            y = 728-getLargeur()-64;
+        if(y>=728-getLargeur())
+            y = 728-getLargeur();
     }
 
     public void rendu(Graphics2D contexte) {
@@ -95,6 +100,19 @@ public class Block {
         if(Math.random()>0.5f){
             gen_left = true;
         }
+    }
+
+    public boolean getGenUp(){
+        return this.gen_up;
+    }
+    public boolean getGenDown(){
+        return this.gen_down;
+    }
+    public boolean getGenRight(){
+        return this.gen_right;
+    }
+    public boolean getGenLeft(){
+        return this.gen_left;
     }
     
 

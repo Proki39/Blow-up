@@ -21,11 +21,13 @@ public class Joueur {
 
     protected BufferedImage sprite;
     protected double x, y;
-    private boolean gauche, droite, bas, haut, saut;
+    private boolean gauche, droite, bas, haut, saut, moving;
     public static int tempsSaut = 1 ; 
+    private Block unBlock;
+    private Colision colision;
   
 
-    public Joueur() {
+    public Joueur(Block unBlock) {
         this.x = 540;
         this.y = 10300;
         this.gauche = false;
@@ -33,6 +35,8 @@ public class Joueur {
         this.bas = false;
         this.haut = false;
         this.saut = false;
+        this.unBlock = unBlock;
+        this.colision = new Colision();
 
         try {
         	this.sprite = ImageIO.read(getClass().getClassLoader().getResource("resources/sprite.png"));            
@@ -40,9 +44,9 @@ public class Joueur {
             Logger.getLogger(Joueur.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
    public void gravite() {
-	   if (this.getY() + sprite.getWidth() <= 10400) {
+	   if (this.getY() + sprite.getWidth() <= 10400 && !colision.Colision1(0, +5, unBlock, getJoueur())) {
 			   this.setY(this.getY() + 5);
 			  
 	   }
@@ -54,21 +58,41 @@ public class Joueur {
    }
 
     public void miseAJour() {
-        if (this.gauche) {
+        System.out.println(y);
+        if (this.gauche && !colision.Colision1(-10, 0, unBlock, getJoueur())) {
             x -=10;
             try {
             	this.sprite = ImageIO.read(getClass().getClassLoader().getResource("resources/sprite.png"));
         		} catch (IOException ex) {
         		Logger.getLogger(Joueur.class.getName()).log(Level.SEVERE, null, ex);
-        		}     
-        }
-        if (this.droite) {
+        		}  
+            }else{
+                if (this.gauche && !colision.Colision1(-2, 0, unBlock, getJoueur())) {
+                    x -=2;
+                    try {
+                        this.sprite = ImageIO.read(getClass().getClassLoader().getResource("resources/sprite.png"));
+                        } catch (IOException ex) {
+                        Logger.getLogger(Joueur.class.getName()).log(Level.SEVERE, null, ex);
+                        }  
+                    }
+            }
+        
+        if (this.droite && !colision.Colision1(10, 0, unBlock, getJoueur())) {
             x += 10;
             try {    	
         		this.sprite = ImageIO.read(getClass().getClassLoader().getResource("resources/sprite.png"));
         		} catch (IOException ex) {
         			Logger.getLogger(Joueur.class.getName()).log(Level.SEVERE, null, ex);
         		}
+        }else{
+            if (this.droite && !colision.Colision1(2, 0, unBlock, getJoueur())) {
+                x += 2;
+                try {    	
+                    this.sprite = ImageIO.read(getClass().getClassLoader().getResource("resources/sprite.png"));
+                    } catch (IOException ex) {
+                        Logger.getLogger(Joueur.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+            }
         }
         if (x > 1040 - sprite.getWidth()) { // collision avec le bord droit de la scene
             x = 1040 - sprite.getWidth();
@@ -76,13 +100,19 @@ public class Joueur {
         if (x < 0) { // collision avec le bord gauche de la scene
             x = 0;
         }
-        if(this.bas){
-            y+=10;
-            
+        if(this.bas && !colision.Colision1(0, 10, unBlock, getJoueur())){
+            y+=10;  
+        }else{
+            if(this.bas && !colision.Colision1(0, 2, unBlock, getJoueur())){
+                y+=2;
+            }
         }
-        if(this.haut){
+        if(this.haut && !colision.Colision1(0, -10, unBlock, getJoueur())){
             y-=10;
-         
+        }else{
+            if(this.haut && !colision.Colision1(0, -2, unBlock, getJoueur())){
+                y-=2;
+            }
         }
         this.gravite();
         if (this.saut) {
@@ -93,12 +123,10 @@ public class Joueur {
         	}
         	
         }
-         
-       
-       
-       
+        
 
     }
+
 
     public void rendu(Graphics2D contexte) {
         contexte.drawImage(this.sprite, (int) x, (int) y- 93*104 , null);
@@ -141,6 +169,9 @@ public class Joueur {
         return sprite.getWidth();
     }
     
+    public Joueur getJoueur(){
+        return this;
+    }
     
 
 }

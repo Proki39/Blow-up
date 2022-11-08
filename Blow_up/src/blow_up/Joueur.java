@@ -129,10 +129,11 @@ public class Joueur {
 
     public void rendu(Graphics2D contexte) {
         if( y > 10400 - 3*104 ){
-            contexte.drawImage(this.sprite, (int) x, (int) y- 93*104 , null);
+            contexte.drawImage(this.sprite, (int) x, (int) y- 93*104 , null);       
         }
         else {
-            contexte.drawImage(this.sprite, (int) x, 4*104 , null);
+            
+            contexte.drawImage(this.sprite, (int) x, (int) y%104 + 4*104 , null);
         }
         
     }

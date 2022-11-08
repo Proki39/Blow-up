@@ -18,6 +18,7 @@ public class Block {
     protected double x, y;
     
     private boolean gen_up = false, gen_down = false, gen_right = false, gen_left = false;
+    private  boolean colision;
     
     
     
@@ -39,10 +40,14 @@ public class Block {
     public void miseAJour() {
         y = y + 5;
 
-        if(gen_down && y>=728-getLargeur()-64)      //Colision avec le sol
+        if(gen_down && y>=728-getLargeur()-64){      //Colision avec le sol
+            
             y = 728-getLargeur()-64;
-        if(y>=728-getLargeur())
+        }
+        if(y>=728-getLargeur()){
+            
             y = 728-getLargeur();
+        }
     }
 
     public void rendu(Graphics2D contexte) {

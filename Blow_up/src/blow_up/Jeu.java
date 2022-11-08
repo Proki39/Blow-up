@@ -31,7 +31,6 @@ public class Jeu {
     
     public void rendu(Graphics2D contexte) {
         int positionJoueur=(int) this.unJoueur.getY()/104-7;
-        System.out.println(positionJoueur);
         for(int i = 0 ; i < 7 ; i++){
             for(int j=0;j<10;j++){
                 int valeur_tuile = this.uneCarte.getDecor()[i+positionJoueur][j];

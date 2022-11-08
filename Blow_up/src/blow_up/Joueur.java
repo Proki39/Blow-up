@@ -115,7 +115,7 @@ public class Joueur {
         }
         this.gravite();
         if (this.saut) {
-        	this.setY(this.getY()- 30);
+        	this.setY(this.getY()- 104);
         	tempsSaut--;
         	if (tempsSaut <= 0) {
         		this.setSaut(false);

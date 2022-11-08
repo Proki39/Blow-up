@@ -29,7 +29,7 @@ public class Joueur {
 
     public Joueur(Block unBlock) {
         this.x = 540;
-        this.y = 10300;
+        this.y = 10400;
         this.gauche = false;
         this.droite = false;
         this.bas = false;
@@ -128,7 +128,13 @@ public class Joueur {
 
 
     public void rendu(Graphics2D contexte) {
-        contexte.drawImage(this.sprite, (int) x, (int) y- 93*104 , null);
+        if( y > 10400 - 3*104 ){
+            contexte.drawImage(this.sprite, (int) x, (int) y- 93*104 , null);
+        }
+        else {
+            contexte.drawImage(this.sprite, (int) x, 4*104 , null);
+        }
+        
     }
 
     public void setGauche(boolean gauche) {

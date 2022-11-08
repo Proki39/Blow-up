@@ -57,8 +57,7 @@ public class Joueur {
 	   }
    }
 
-    public void miseAJour() {
-        System.out.println(y);
+    public void miseAJour() {;
         if (this.gauche && !colision.Colision1(-10, 0, unBlock, getJoueur())) {
             x -=10;
             try {

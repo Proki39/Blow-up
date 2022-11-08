@@ -30,14 +30,25 @@ public class Jeu {
          
     
     public void rendu(Graphics2D contexte) {
-        uneCarte.rendu(contexte);
+        int positionJoueur=(int) this.unJoueur.getY()/104-7;
+        System.out.println(positionJoueur);
+        for(int i = 0 ; i < 7 ; i++){
+            for(int j=0;j<10;j++){
+                int valeur_tuile = this.uneCarte.getDecor()[i+positionJoueur][j];
+                contexte.drawImage(this.uneCarte.getTuiles()[valeur_tuile],104*j,104*i,null);
+                
+                
+            }
+        
         unJoueur.rendu(contexte);
         unBlock.rendu(contexte);
+        
         // 1. Rendu du décor
         //uneCarte.rendu(contexte);
         // 2. Rendu des sprites
         //uneBlock.rendu(contexte);
         // 3. Rendu des textes
+    }
     }
         
     

@@ -19,8 +19,6 @@ public class Carte {
     private int hauteur = 100;
     private int tailleTuile = 104;
     private JLabel jLabel1;
-    private Jeu jeu;
-    private Joueur joueur = new Joueur(null);
     protected int positionJoueur;
     private int [][] decor = {
         {1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, 
@@ -146,22 +144,43 @@ public class Carte {
     }
 
     public void miseAJour() {
-        positionJoueur = (int) this.joueur.getY()/104-7;
+        
         //System.out.println(positionJoueur);  
     }
 
 
-    public void rendu(Graphics2D contexte) {
-                                // Pourquoi le y ne se met pas à jour???????
-        for(int i = 0 ; i < 7 ; i++){
-            for(int j=0;j<10;j++){
-                int valeur_tuile = decor[i+positionJoueur][j];
-                contexte.drawImage(tuiles[valeur_tuile],104*j,104*i,null);
-                
-                
-            }
-        }
+    public void rendu(Graphics2D contexte) {;
+    
       
     }
+
+    public int getLargeur() {
+        return largeur;
+    }
+
+    public int getHauteur() {
+        return hauteur;
+    }
+
+    public int getTailleTuile() {
+        return tailleTuile;
+    }
+
+    public JLabel getjLabel1() {
+        return jLabel1;
+    }
+
+    public int getPositionJoueur() {
+        return positionJoueur;
+    }
+
+    public int[][] getDecor() {
+        return decor;
+    }
+
+    public BufferedImage[] getTuiles() {
+        return tuiles;
+    }
+    
 
 }

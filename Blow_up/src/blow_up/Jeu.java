@@ -36,6 +36,7 @@ public class Jeu {
                 for(int j=0;j<10;j++){
                     int valeur_tuile = this.uneCarte.getDecor()[i+93][j];
                     contexte.drawImage(this.uneCarte.getTuiles()[valeur_tuile], 104*j, 104*i, null);
+                    unBlock.rendu(contexte, 93);
                 }
             }
         }
@@ -44,14 +45,13 @@ public class Jeu {
             for(int j=0;j<10;j++){
                 int valeur_tuile = this.uneCarte.getDecor()[i+positionJoueur-4][j];
                 contexte.drawImage(this.uneCarte.getTuiles()[valeur_tuile], 104*j, 104*i, null);
-                
+                unBlock.rendu(contexte, positionJoueur-4);
                 
             }
         }
         }
-        
+
         unJoueur.rendu(contexte);
-        unBlock.rendu(contexte);
         
         // 1. Rendu du décor
         //uneCarte.rendu(contexte);

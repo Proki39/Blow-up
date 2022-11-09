@@ -46,18 +46,19 @@ public class Joueur {
     }
 
    public void gravite() {
-	   if (this.getY() + sprite.getWidth() <= 10400 && !colision.Colision1(0, +5, unBlock, getJoueur())) {
+	   if (this.getY() + sprite.getHeight() <= 10400 && !colision.Colision1(0, +5, unBlock, getJoueur())) {
 			   this.setY(this.getY() + 5);
 			  
 	   }
-	   if (this.getY() + sprite.getWidth() > 10400) {
+	   if (this.getY() + sprite.getHeight() > 10400) {
 		   		this.setY(10400-sprite.getHeight());
 		   		
 		   		
 	   }
    }
 
-    public void miseAJour() {;
+    public void miseAJour() {
+        //System.out.println(y);;
         if (this.gauche && !colision.Colision1(-10, 0, unBlock, getJoueur())) {
             x -=10;
             try {
@@ -65,15 +66,6 @@ public class Joueur {
         		} catch (IOException ex) {
         		Logger.getLogger(Joueur.class.getName()).log(Level.SEVERE, null, ex);
         		}  
-            }else{
-                if (this.gauche && !colision.Colision1(-2, 0, unBlock, getJoueur())) {
-                    x -=2;
-                    try {
-                        this.sprite = ImageIO.read(getClass().getClassLoader().getResource("resources/sprite.png"));
-                        } catch (IOException ex) {
-                        Logger.getLogger(Joueur.class.getName()).log(Level.SEVERE, null, ex);
-                        }  
-                    }
             }
         
         if (this.droite && !colision.Colision1(10, 0, unBlock, getJoueur())) {
@@ -83,15 +75,6 @@ public class Joueur {
         		} catch (IOException ex) {
         			Logger.getLogger(Joueur.class.getName()).log(Level.SEVERE, null, ex);
         		}
-        }else{
-            if (this.droite && !colision.Colision1(2, 0, unBlock, getJoueur())) {
-                x += 2;
-                try {    	
-                    this.sprite = ImageIO.read(getClass().getClassLoader().getResource("resources/sprite.png"));
-                    } catch (IOException ex) {
-                        Logger.getLogger(Joueur.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-            }
         }
         if (x > 1040 - sprite.getWidth()) { // collision avec le bord droit de la scene
             x = 1040 - sprite.getWidth();
@@ -101,17 +84,9 @@ public class Joueur {
         }
         if(this.bas && !colision.Colision1(0, 10, unBlock, getJoueur())){
             y+=10;  
-        }else{
-            if(this.bas && !colision.Colision1(0, 2, unBlock, getJoueur())){
-                y+=2;
-            }
         }
         if(this.haut && !colision.Colision1(0, -10, unBlock, getJoueur())){
             y-=10;
-        }else{
-            if(this.haut && !colision.Colision1(0, -2, unBlock, getJoueur())){
-                y-=2;
-            }
         }
         this.gravite();
         if (this.saut) {
@@ -129,7 +104,7 @@ public class Joueur {
 
     public void rendu(Graphics2D contexte) {
         if( y > 10400 - 3*104 ){
-            contexte.drawImage(this.sprite, (int) x, (int) y- 93*104 , null);       
+            contexte.drawImage(this.sprite, (int) x, (int) y - 93*104 , null);       
         }
         else {
             

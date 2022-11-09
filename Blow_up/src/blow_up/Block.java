@@ -39,39 +39,39 @@ public class Block {
 
     public void miseAJour() {
         y = y + 5;
-
-        if(gen_down && y>=728-getLargeur()-64){      //Colision avec le sol
+        System.out.println(y);
+        if(gen_down && y>=10400-getLargeur()-64){      //Colision avec le sol
             
-            y = 728-getLargeur()-64;
+            y = 10400-getLargeur()-64;
         }
-        if(y>=728-getLargeur()){
+        if(y>=10400-getLargeur()){
             
-            y = 728-getLargeur();
+            y = 10400-getLargeur();
         }
     }
 
-    public void rendu(Graphics2D contexte) {
-        contexte.drawImage(this.sprite, (int) x, (int) y, null);
-      
-        
+    public void rendu(Graphics2D contexte, int a) {
+
+        contexte.drawImage(this.sprite, (int) x, (int) y - a*104, null);
+
         //DRAW
         if(gen_up){
-            contexte.drawImage(this.sprite, (int) x, (int) y-64, null);
+            contexte.drawImage(this.sprite, (int) x, (int) y-64 - a*104, null);
         }
         if(gen_down){
-            contexte.drawImage(this.sprite, (int) x, (int) y+64, null);
+            contexte.drawImage(this.sprite, (int) x, (int) y+64 - a*104, null);
         }
         if(gen_left){
-            contexte.drawImage(this.sprite, (int) x-64, (int) y, null);
+            contexte.drawImage(this.sprite, (int) x-64, (int) y - a*104, null);
         }
         if(gen_right){
-            contexte.drawImage(this.sprite, (int) x+64, (int) y, null);
+            contexte.drawImage(this.sprite, (int) x+64, (int) y - a*104, null);
         }
     }
 
     public void lancer() {
         this.x = 10 + Math.random() * 600;
-        this.y = -27;
+        this.y = 93*104;
     }
 
     public double getX() {

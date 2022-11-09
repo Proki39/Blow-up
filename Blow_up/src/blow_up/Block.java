@@ -24,6 +24,7 @@ public class Block {
     private boolean gen_up = false, gen_down = false, gen_right = false, gen_left = false;
     private  boolean colision;
     
+    protected static int Bwidth = 128;
     
     
 
@@ -38,9 +39,9 @@ public class Block {
     public void miseAJour() {
         y = y + 5;
         System.out.println(y);
-        if(gen_down && y>=10400-getLargeur()-64){      //Colision avec le sol
+        if(gen_down && y>=10400-getLargeur()-Bwidth){      //Colision avec le sol
             
-            y = 10400-getLargeur()-64;
+            y = 10400-getLargeur()-Bwidth;
         }
         if(y>=10400-getLargeur()){
             
@@ -54,16 +55,16 @@ public class Block {
 
         //DRAW
         if(gen_up){
-            contexte.drawImage(this.sprite, (int) x, (int) y-64 - a*104, null);
+            contexte.drawImage(this.sprite, (int) x, (int) y-Bwidth - a*104, null);
         }
         if(gen_down){
-            contexte.drawImage(this.sprite, (int) x, (int) y+64 - a*104, null);
+            contexte.drawImage(this.sprite, (int) x, (int) y+Bwidth - a*104, null);
         }
         if(gen_left){
-            contexte.drawImage(this.sprite, (int) x-64, (int) y - a*104, null);
+            contexte.drawImage(this.sprite, (int) x-Bwidth, (int) y - a*104, null);
         }
         if(gen_right){
-            contexte.drawImage(this.sprite, (int) x+64, (int) y - a*104, null);
+            contexte.drawImage(this.sprite, (int) x+Bwidth, (int) y - a*104, null);
         }
     }
 

@@ -18,7 +18,7 @@ public class BlockSheet {
     
     public static BufferedImage tilesheet;
     public static BufferedImage rocher, meteore, brique, bois;
-    protected static int width = 64, height = 64;
+    protected static int width = 128, height = 128;
     
     
     public BlockSheet(){
@@ -38,6 +38,14 @@ public class BlockSheet {
     
     public static BufferedImage getSprite(int x, int y, int width, int height){
         return tilesheet.getSubimage(x, y, width, height);
+    }
+    
+    public int getWidth() {
+        return width;
+    }
+    
+    public int getHeight() {
+        return height;
     }
     
 }

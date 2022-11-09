@@ -3,20 +3,24 @@ package blow_up;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Random;
+import java.util.function.IntConsumer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.IntStream;
 import javax.imageio.ImageIO;
 
 /**
  * 
  *
- * @author rafaelorita
+ * @author rafaeloritaa
  */
 public class Block {
 
-    protected BufferedImage sprite;
+    protected BufferedImage sprite = BlockSheet.bois;
     protected double x, y;
     
+    private int materiau, n_mat = 4;
     private boolean gen_up = false, gen_down = false, gen_right = false, gen_left = false;
     private  boolean colision;
     
@@ -24,12 +28,6 @@ public class Block {
     
 
     public Block() {
-        try {
-            this.sprite = ImageIO.read(getClass().getResource("../resources/block_test.png"));
-        } catch (IOException ex) {
-            Logger.getLogger(Block.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
         
         //GENERATION ALEATOIRE 
         genRandom();
@@ -93,6 +91,7 @@ public class Block {
     
     private void genRandom(){
         
+        //Forme
         if(Math.random()>0.5f) {
             gen_up = true;
         }
@@ -105,6 +104,28 @@ public class Block {
         if(Math.random()>0.5f){
             gen_left = true;
         }
+        
+        //Materiau
+        Random random= new Random();  
+        IntStream ds = random.ints(1, this.n_mat);
+        
+        ds.limit(5).forEach(new IntConsumer() {
+            @Override
+            public void accept(int i) {
+                if(i==1) {
+                sprite = BlockSheet.rocher;
+                }
+                if(i==2){
+                sprite = BlockSheet.meteore;
+                }
+                if(i==3){
+                sprite = BlockSheet.brique;
+                }
+                if(i==4){
+                sprite = BlockSheet.bois;
+                }
+            }
+        });
     }
 
     public boolean getGenUp(){

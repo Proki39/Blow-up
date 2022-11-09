@@ -12,7 +12,7 @@ import javax.imageio.ImageIO;
 
 /**
  *
- * @author roritaruuu
+ * @author roritaru
  */
 public class BlockSheet {
     

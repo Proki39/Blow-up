@@ -17,7 +17,7 @@ import javax.swing.Timer;
 
 /**
  *
- * @author lucienboulard
+ * @author lucienboulardd
  */
 public class FenetreDeJeu extends JFrame implements ActionListener, KeyListener {
     

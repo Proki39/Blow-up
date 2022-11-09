@@ -13,7 +13,7 @@ import javax.imageio.ImageIO;
 /**
  * 
  *
- * @author rafaeloritaa
+ * @author rafaelorita
  */
 public class Block {
 

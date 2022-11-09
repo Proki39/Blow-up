@@ -18,6 +18,7 @@ public class BlockSheet {
     
     public static BufferedImage tilesheet;
     public static BufferedImage rocher, meteore, brique, bois;
+    protected static int width = 64, height = 64;
     
     
     public BlockSheet(){
@@ -27,10 +28,10 @@ public class BlockSheet {
             Logger.getLogger(BlockSheet.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        rocher = BlockSheet.getSprite(192, 192, 64, 64);
-        meteore = BlockSheet.getSprite(0, 0, 64, 64);
-        brique = BlockSheet.getSprite(256, 64, 64, 64);
-        bois = BlockSheet.getSprite(64, 256, 64, 64);
+        rocher = BlockSheet.getSprite(3*width, 3*height, width, height);
+        meteore = BlockSheet.getSprite(0*width, 0*height, width, height);
+        brique = BlockSheet.getSprite(4*width, 1*height, width, height);
+        bois = BlockSheet.getSprite(1*width, 4*height, width, height);
     }
     
     

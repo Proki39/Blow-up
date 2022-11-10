@@ -149,9 +149,16 @@ public class Carte {
     }
 
 
-    public void rendu(Graphics2D contexte) {;
-    
+    public void rendu(Graphics2D contexte) {
+        contexte.fillRect(0, 0, 1040, 728);
+        for(int i = 0 ; i < 100 ; i++){       
+                for(int j=0;j<10;j++){
+                    int valeur_tuile = this.decor[i][j];
+                    contexte.drawImage(this.tuiles[valeur_tuile], 104*j, 104*i-Camera.camera_y, null);
+                    
+                }
       
+    }
     }
 
     public int getLargeur() {

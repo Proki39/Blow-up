@@ -33,27 +33,7 @@ public class Jeu {
          
     
     public void rendu(Graphics2D contexte) {
-        int positionJoueur=(int) this.unJoueur.getY()/104;
-        if(positionJoueur > 97){
-            for(int i = 0 ; i < 7 ; i++){       //défilement de l'arrière plan
-                for(int j=0;j<10;j++){
-                    int valeur_tuile = this.uneCarte.getDecor()[i+93][j];
-                    contexte.drawImage(this.uneCarte.getTuiles()[valeur_tuile], 104*j, 104*i, null);
-                    //unBlock.rendu(contexte, 93);
-                }
-            }
-        }
-        else{
-        for(int i = 0 ; i < 7 ; i++){       //défilement de l'arrière plan
-            for(int j=0;j<10;j++){
-                int valeur_tuile = this.uneCarte.getDecor()[i+positionJoueur-4][j];
-                contexte.drawImage(this.uneCarte.getTuiles()[valeur_tuile], 104*j, 104*i, null);
-                //unBlock.rendu(contexte, positionJoueur-4);
-                
-            }
-        }
-        }
-
+        uneCarte.rendu(contexte);
         unJoueur.rendu(contexte);
         unMonde.rendu(contexte);
         

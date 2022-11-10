@@ -51,7 +51,7 @@ public class MondeGenerateur {
         
         //Rendu des Bloques
         for(int i=0; i<blocos.size(); i++){
-            blocos.get(i).rendu(contexte, 93);
+            blocos.get(i).rendu(contexte);
         }
         
         

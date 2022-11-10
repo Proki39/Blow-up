@@ -97,19 +97,16 @@ public class Joueur {
         	}
         	
         }
+        Camera.camera_x = (int) this.getX()-1040/2;
+        Camera.camera_y = (int) this.getY()-728/2;
         
 
     }
 
 
     public void rendu(Graphics2D contexte) {
-        if( y > 10400 - 3*104 ){
-            contexte.drawImage(this.sprite, (int) x, (int) y - 93*104 , null);       
-        }
-        else {
-            
-            contexte.drawImage(this.sprite, (int) x, (int) y%104 + 4*104 , null);
-        }
+            contexte.drawImage(this.sprite, (int) x, (int) y - Camera.camera_y, null);       
+
         
     }
 

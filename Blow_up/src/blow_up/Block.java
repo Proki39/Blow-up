@@ -80,22 +80,22 @@ public class Block {
         
     }
 
-    public void rendu(Graphics2D contexte, int a) {
+    public void rendu(Graphics2D contexte) {
 
-        contexte.drawImage(this.sprite, (int) x, (int) y - a*104, null);
+        contexte.drawImage(this.sprite, (int) x, (int) y - Camera.camera_x, null);
 
         //DRAW
         if(gen_up){
-            contexte.drawImage(this.sprite, (int) x, (int) y-Bwidth - a*104, null);
+            contexte.drawImage(this.sprite, (int) x, (int) y-Bwidth - Camera.camera_x, null);
         }
         if(gen_down){
-            contexte.drawImage(this.sprite, (int) x, (int) y+Bwidth - a*104, null);
+            contexte.drawImage(this.sprite, (int) x, (int) y+Bwidth - Camera.camera_x, null);
         }
         if(gen_left){
-            contexte.drawImage(this.sprite, (int) x-Bwidth, (int) y - a*104, null);
+            contexte.drawImage(this.sprite, (int) x-Bwidth, (int) y - Camera.camera_x, null);
         }
         if(gen_right){
-            contexte.drawImage(this.sprite, (int) x+Bwidth, (int) y - a*104, null);
+            contexte.drawImage(this.sprite, (int) x+Bwidth, (int) y - Camera.camera_x, null);
         }
     }
 

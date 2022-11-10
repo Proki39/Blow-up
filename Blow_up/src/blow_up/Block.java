@@ -38,7 +38,6 @@ public class Block {
 
     public void miseAJour() {
         y = y + 5;
-        System.out.println(y);
         if(gen_down && y>=10400-getLargeur()-Bwidth){      //Colision avec le sol
             
             y = 10400-getLargeur()-Bwidth;
@@ -70,7 +69,7 @@ public class Block {
 
     public void lancer() {
         this.x = 10 + Math.random() * 600;
-        this.y = 93*104;
+        this.y = 90*104;
     }
 
     public double getX() {

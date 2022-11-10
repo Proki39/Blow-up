@@ -18,12 +18,12 @@ import javax.imageio.ImageIO;
 public class Jeu {
     private Joueur unJoueur;
     private Carte uneCarte;
-    public Block unBlock;
+    public MondeGenerateur unMonde;
 
     public Jeu() {    
     this.uneCarte = new Carte();
-    this.unBlock = new Block();
-    this.unJoueur = new Joueur(this.unBlock);
+    this.unMonde = new MondeGenerateur();
+    this.unJoueur = new Joueur();
     }
 
    
@@ -36,7 +36,7 @@ public class Jeu {
                 for(int j=0;j<10;j++){
                     int valeur_tuile = this.uneCarte.getDecor()[i+93][j];
                     contexte.drawImage(this.uneCarte.getTuiles()[valeur_tuile], 104*j, 104*i, null);
-                    unBlock.rendu(contexte, 93);
+                    //unBlock.rendu(contexte, 93);
                 }
             }
         }
@@ -45,13 +45,14 @@ public class Jeu {
             for(int j=0;j<10;j++){
                 int valeur_tuile = this.uneCarte.getDecor()[i+positionJoueur-4][j];
                 contexte.drawImage(this.uneCarte.getTuiles()[valeur_tuile], 104*j, 104*i, null);
-                unBlock.rendu(contexte, positionJoueur-4);
+                //unBlock.rendu(contexte, positionJoueur-4);
                 
             }
         }
         }
 
         unJoueur.rendu(contexte);
+        unMonde.rendu(contexte);
         
         // 1. Rendu du décor
         //uneCarte.rendu(contexte);
@@ -65,7 +66,7 @@ public class Jeu {
     
     public void miseAJour () {
        uneCarte.miseAJour();
-       unBlock.miseAJour();
+       unMonde.miseAJour();
        unJoueur.miseAJour();
        
         // 1. Mise à jour de l’avatar en fonction des commandes des joueurs

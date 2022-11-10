@@ -27,7 +27,7 @@ public class Joueur {
     private Colision colision;
   
 
-    public Joueur(Block unBlock) {
+    public Joueur() {
         this.x = 540;
         this.y = 10400;
         this.gauche = false;
@@ -35,8 +35,8 @@ public class Joueur {
         this.bas = false;
         this.haut = false;
         this.saut = false;
-        this.unBlock = unBlock;
-        this.colision = new Colision();
+        //this.unBlock = unBlock;
+        //this.colision = new Colision();
 
         try {
         	this.sprite = ImageIO.read(getClass().getClassLoader().getResource("resources/sprite.png"));            
@@ -46,7 +46,7 @@ public class Joueur {
     }
 
    public void gravite() {
-	   if (this.getY() + sprite.getHeight() <= 10400 && !colision.Colision1(0, +5, unBlock, getJoueur())) {
+	   if (this.getY() + sprite.getHeight() <= 10400) {
 			   this.setY(this.getY() + 5);
 			  
 	   }
@@ -59,7 +59,7 @@ public class Joueur {
 
     public void miseAJour() {
         //System.out.println(y);;
-        if (this.gauche && !colision.Colision1(-10, 0, unBlock, getJoueur())) {
+        if (this.gauche) {
             x -=10;
             try {
             	this.sprite = ImageIO.read(getClass().getClassLoader().getResource("resources/sprite.png"));
@@ -68,7 +68,7 @@ public class Joueur {
         		}  
             }
         
-        if (this.droite && !colision.Colision1(10, 0, unBlock, getJoueur())) {
+        if (this.droite) {
             x += 10;
             try {    	
         		this.sprite = ImageIO.read(getClass().getClassLoader().getResource("resources/sprite.png"));
@@ -82,10 +82,10 @@ public class Joueur {
         if (x < 0) { // collision avec le bord gauche de la scene
             x = 0;
         }
-        if(this.bas && !colision.Colision1(0, 10, unBlock, getJoueur())){
+        if(this.bas){
             y+=10;  
         }
-        if(this.haut && !colision.Colision1(0, -10, unBlock, getJoueur())){
+        if(this.haut){
             y-=10;
         }
         this.gravite();

@@ -20,6 +20,9 @@ public class Jeu {
     private Joueur unJoueur;
     private Carte uneCarte;
     public MondeGenerateur unMonde;
+    private int score;
+    private BufferedImage victory;
+    
 
     
     
@@ -27,6 +30,13 @@ public class Jeu {
     this.uneCarte = new Carte();
     this.unMonde = new MondeGenerateur();
     this.unJoueur = new Joueur();
+    this.score = 0;
+    try {
+        this.victory = ImageIO.read(getClass().getResource("../resources/victory.jpeg"));
+    } 
+    catch (IOException ex) {
+       Logger.getLogger(Jeu.class.getName()).log(Level.SEVERE, null, ex); 
+    }
     }
 
    
@@ -36,7 +46,7 @@ public class Jeu {
         uneCarte.rendu(contexte);
         unJoueur.rendu(contexte);
         unMonde.rendu(contexte);
-        
+        contexte.drawString("Score : " + score, 20, 40);
         // 1. Rendu du décor
         //uneCarte.rendu(contexte);
         // 2. Rendu des sprites
@@ -51,6 +61,7 @@ public class Jeu {
        uneCarte.miseAJour();
        unMonde.miseAJour();
        unJoueur.miseAJour();
+       this.score = 10400- (int) this.unJoueur.getY();
        
         // 1. Mise à jour de l’avatar en fonction des commandes des joueurs
         // 2. Mise à jour des autres éléments (objets, monstres, etc.)
@@ -58,8 +69,11 @@ public class Jeu {
         // 3. Gérer les interactions (collisions et autres règles)
     }
     
-    public boolean estTermine() {
-        
+    public boolean estTermine(Graphics2D contexte) {
+        if(score>10000){
+            contexte.drawImage(this.victory,(1040-360)/2 , (728-360)/2, null);
+            return true;
+        }
         // Renvoie vrai si la partie est terminée (gagnée ou perdue)
         return false; 
     }

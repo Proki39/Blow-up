@@ -15,7 +15,7 @@ import java.util.ArrayList;
  */
 public class MondeGenerateur {
     
-    public List<Block> blocos =  new ArrayList<Block>();
+    public static List<Block> blocos =  new ArrayList<Block>();
     
     private double SpawnRate = 4;
     

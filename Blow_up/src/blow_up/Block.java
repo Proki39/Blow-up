@@ -1,6 +1,7 @@
 package blow_up;
 
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Random;
@@ -9,6 +10,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.IntStream;
 import javax.imageio.ImageIO;
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  * 
@@ -22,9 +25,10 @@ public class Block {
     
     private int materiau, n_mat = 4;
     private boolean gen_up = false, gen_down = false, gen_right = false, gen_left = false;
-    private  boolean colision;
+    private  boolean est_fixe = false;
     
     protected static int Bwidth = 128;
+    protected static int spd = 5;
     
     
 
@@ -37,15 +41,43 @@ public class Block {
     }
 
     public void miseAJour() {
-        y = y + 5;
-        if(gen_down && y>=10400-getLargeur()-Bwidth){      //Colision avec le sol
+        
+        if(!est_fixe){
             
-            y = 10400-getLargeur()-Bwidth;
-        }
-        if(y>=10400-getLargeur()){
+            //Bloque Tombe
+            if(!isCollidingBlock((int) this.getX(),(int) this.getY()+1)){
+               y = y + spd; 
+            }else{
+                est_fixe = true;
+            }
             
-            y = 10400-getLargeur();
+            
+            //Colision avec le sol
+            if(gen_down && y>=10400-getLargeur()-Bwidth){      
+            
+                y = 10400-getLargeur()-Bwidth;
+                est_fixe = true;
+            }
+            if(y>=10400-getLargeur()){
+            
+                y = 10400-getLargeur();
+                est_fixe = true;
+            }
+            
+            
+            //Colision avec les bloques
+            if(gen_down && y>=10400-getLargeur()-Bwidth){      
+            
+                y = 10400-getLargeur()-Bwidth;
+                est_fixe = true;
+            }
+            if(y>=10400-getLargeur()){
+            
+                y = 10400-getLargeur();
+                est_fixe = true;
+            }
         }
+        
     }
 
     public void rendu(Graphics2D contexte, int a) {
@@ -139,6 +171,85 @@ public class Block {
     }
     public boolean getGenLeft(){
         return this.gen_left;
+    }
+    
+    
+    public boolean isCollidingBlock(int xnext, int ynext){
+        
+        List<Rectangle> currentRects =  new ArrayList<>();
+        
+        //If the block has a down block or not
+        if (this.gen_down){
+            currentRects.add(new Rectangle(xnext,ynext+this.Bwidth,this.Bwidth,this.Bwidth));
+                    
+        }else{
+            currentRects.add(new Rectangle(xnext,ynext,this.Bwidth,this.Bwidth));
+        }
+        
+        //If the block has a left block or not
+        if (this.gen_left){
+            currentRects.add(new Rectangle(xnext-this.Bwidth,ynext,this.Bwidth,this.Bwidth));
+                    
+        }
+        
+        //If the block has a right block or not
+        if (this.gen_right){
+            currentRects.add(new Rectangle(xnext+this.Bwidth,ynext,this.Bwidth,this.Bwidth));
+                    
+        }
+        
+        for(int i=0; i<MondeGenerateur.blocos.size(); i++){
+            Block b = MondeGenerateur.blocos.get(i);
+            
+            if(b == this){
+                continue;
+            }
+            
+            /*
+            ///////////////////////////////////
+            CREATE HITBOX TARGET BLOCKS
+            ///////////////////////////////////
+            */
+            //If the Targetblock has an up block or not
+            List<Rectangle> targetRects =  new ArrayList<>();
+            
+            if (b.gen_up){
+                targetRects.add(new Rectangle((int) b.getX(),(int) b.getY()-this.Bwidth,this.Bwidth,this.Bwidth));
+                    
+            }else{
+                targetRects.add(new Rectangle((int) b.getX(),(int) b.getY(),this.Bwidth,this.Bwidth));
+            }
+        
+            //If the Targetblock has a left block or not
+            if (b.gen_left){
+                targetRects.add(new Rectangle((int) b.getX()-this.Bwidth,(int) b.getY(),this.Bwidth,this.Bwidth));
+                    
+            }
+        
+            //If the Targetblock has a right block or not
+            if (b.gen_right){
+                targetRects.add(new Rectangle((int) b.getX()+this.Bwidth,(int) b.getY(),this.Bwidth,this.Bwidth));
+                    
+            }
+            
+            /*
+            ///////////////////////////////////
+            TEST COLLISION
+            ///////////////////////////////////
+            */
+            for(int j=0; j<currentRects.size(); j++){
+                for(int k=0; k<targetRects.size(); k++){
+                    if(currentRects.get(j).intersects(targetRects.get(k))){
+                        currentRects.clear();
+                        targetRects.clear();
+                        return true;
+                    }
+                }
+            }
+            
+        }
+        
+        return false;
     }
     
 

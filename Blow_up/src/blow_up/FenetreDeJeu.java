@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
+import java.util.Random;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -28,6 +29,7 @@ public class FenetreDeJeu extends JFrame implements ActionListener, KeyListener 
     private Timer timer;
     public Joueur Joueur;
     public Block unBlock;
+    public static Random rand;
     
     public FenetreDeJeu() {
         
@@ -40,6 +42,7 @@ public class FenetreDeJeu extends JFrame implements ActionListener, KeyListener 
         this.setContentPane(this.jLabel1);
         this.pack();
         new BlockSheet();
+        this.rand = new Random();
         
         
         // Creation du buffer pour l’affichage du jeu et recuperation du contexte graphique

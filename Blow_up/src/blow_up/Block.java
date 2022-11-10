@@ -45,7 +45,7 @@ public class Block {
         if(!est_fixe){
             
             //Bloque Tombe
-            if(!isCollidingBlock((int) this.getX(),(int) this.getY()+1)){
+            if(!isCollidingBlock((int) this.getX(),(int) this.getY()+spd)){
                y = y + spd; 
             }else{
                 est_fixe = true;
@@ -100,7 +100,7 @@ public class Block {
     }
 
     public void lancer() {
-        this.x = 10 + Math.random() * 600;
+        this.x = FenetreDeJeu.rand.nextInt(1000);
         this.y = 90*104;
     }
 
@@ -124,40 +124,35 @@ public class Block {
     private void genRandom(){
         
         //Forme
-        if(Math.random()>0.5f) {
+        if(FenetreDeJeu.rand.nextInt(100)>50) {
             gen_up = true;
         }
-        if(Math.random()>0.5f) {
+        if(FenetreDeJeu.rand.nextInt(100)>50) {
             gen_down = true;
         }
-        if(Math.random()>0.5f) {
+        if(FenetreDeJeu.rand.nextInt(100)>50) {
             gen_right = true;
         }
-        if(Math.random()>0.5f){
+        if(FenetreDeJeu.rand.nextInt(100)>50){
             gen_left = true;
         }
         
         //Materiau
-        Random random= new Random();  
-        IntStream ds = random.ints(1, this.n_mat);
+        int i = FenetreDeJeu.rand.nextInt(4);
         
-        ds.limit(5).forEach(new IntConsumer() {
-            @Override
-            public void accept(int i) {
-                if(i==1) {
+                if(i==0) {
                 sprite = BlockSheet.rocher;
                 }
-                if(i==2){
+                if(i==1){
                 sprite = BlockSheet.meteore;
                 }
-                if(i==3){
+                if(i==2){
                 sprite = BlockSheet.brique;
                 }
-                if(i==4){
+                if(i==3){
                 sprite = BlockSheet.bois;
                 }
-            }
-        });
+            
     }
 
     public boolean getGenUp(){

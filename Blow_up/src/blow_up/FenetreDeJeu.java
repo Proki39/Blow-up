@@ -44,7 +44,7 @@ public class FenetreDeJeu extends JFrame implements ActionListener, KeyListener 
         new BlockSheet();
         this.rand = new Random();
         
-        
+       // 
         // Creation du buffer pour l’affichage du jeu et recuperation du contexte graphique
         this.framebuffer = new BufferedImage(this.jLabel1.getWidth(), this.jLabel1.getHeight(), BufferedImage.TYPE_INT_ARGB); 
         this.jLabel1.setIcon(new ImageIcon(framebuffer));

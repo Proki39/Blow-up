@@ -69,7 +69,7 @@ public class Jeu {
     public void miseAJour () {
        uneCarte.miseAJour();
        unMonde.miseAJour();
-       unJoueur.miseAJour();
+       unJoueur.miseAJour(10);
        this.score = 10400- (int) this.unJoueur.getY();
         // 1. Mise à jour de l’avatar en fonction des commandes des joueurs
         // 2. Mise à jour des autres éléments (objets, monstres, etc.)

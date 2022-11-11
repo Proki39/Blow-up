@@ -60,37 +60,40 @@ public class Joueur {
 	   }
    }
 
-    public void miseAJour() {
-        //System.out.println(y);;
-        if (this.gauche && !colision.Colision1(-10, 0, blocos, getJoueur())) {
-            x -=10;
+    public void miseAJour(int speed) {
+        int i;
+        for(i=0;i<3;i++){
+        if (this.gauche && !colision.Colision1(-speed, 0, blocos, getJoueur())) {
+            x -=speed;
             try {
             	this.sprite = ImageIO.read(getClass().getClassLoader().getResource("resources/sprite.png"));
         		} catch (IOException ex) {
         		Logger.getLogger(Joueur.class.getName()).log(Level.SEVERE, null, ex);
-        		}  
+        		}
             }
         
-        if (this.droite && !colision.Colision1(10, 0, blocos, getJoueur())) {
-            x += 10;
+        if (this.droite && !colision.Colision1(speed, 0, blocos, getJoueur())) {
+            x += speed;
             try {    	
         		this.sprite = ImageIO.read(getClass().getClassLoader().getResource("resources/sprite.png"));
         		} catch (IOException ex) {
         			Logger.getLogger(Joueur.class.getName()).log(Level.SEVERE, null, ex);
         		}
         }
-        if (x > 1040 - sprite.getWidth()) { // collision avec le bord droit de la scene
-            x = 1040 - sprite.getWidth();
+        if (x > 1040 + 45 - sprite.getWidth()) { // collision avec le bord droit de la scene
+            x = 1040 + 45 - sprite.getWidth();
         }
         if (x < 0) { // collision avec le bord gauche de la scene
             x = 0;
         }
-        if(this.bas && !colision.Colision1(0, 10, blocos, getJoueur())){
-            y+=10;  
+        if(this.bas && !colision.Colision1(0, speed, blocos, getJoueur())){
+            y+=speed; 
         }
-        if(this.haut && !colision.Colision1(0, -10, blocos, getJoueur())){
-            y-=10;
+        if(this.haut && !colision.Colision1(0, -speed, blocos, getJoueur())){
+            y-=speed;
         }
+        speed = speed/2;
+    }
         this.gravite();
         if (this.saut) {
         	this.setY(this.getY()- 104);

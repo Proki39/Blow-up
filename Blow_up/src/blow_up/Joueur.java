@@ -8,9 +8,12 @@ package blow_up;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Exemple de classe lutin
@@ -21,13 +24,13 @@ public class Joueur {
 
     protected BufferedImage sprite;
     protected double x, y;
-    private boolean gauche, droite, bas, haut, saut, moving;
+    private boolean gauche, droite, bas, haut, saut;
     public static int tempsSaut = 1 ; 
-    private Block unBlock;
     private Colision colision;
+    public List<Block> blocos =  new ArrayList<Block>();
   
 
-    public Joueur() {
+    public Joueur(List<Block> blocos) {
         this.x = 540;
         this.y = 10400;
         this.gauche = false;
@@ -35,8 +38,8 @@ public class Joueur {
         this.bas = false;
         this.haut = false;
         this.saut = false;
-        //this.unBlock = unBlock;
-        //this.colision = new Colision();
+        this.blocos = blocos;
+        this.colision = new Colision();
 
         try {
         	this.sprite = ImageIO.read(getClass().getClassLoader().getResource("resources/sprite.png"));            
@@ -46,7 +49,7 @@ public class Joueur {
     }
 
    public void gravite() {
-	   if (this.getY() + sprite.getHeight() <= 10400) {
+	   if (this.getY() + sprite.getHeight() <= 10400 && !colision.Colision1(0, 5, blocos, getJoueur())) {
 			   this.setY(this.getY() + 5);
 			  
 	   }
@@ -59,7 +62,7 @@ public class Joueur {
 
     public void miseAJour() {
         //System.out.println(y);;
-        if (this.gauche) {
+        if (this.gauche && !colision.Colision1(-10, 0, blocos, getJoueur())) {
             x -=10;
             try {
             	this.sprite = ImageIO.read(getClass().getClassLoader().getResource("resources/sprite.png"));
@@ -68,7 +71,7 @@ public class Joueur {
         		}  
             }
         
-        if (this.droite) {
+        if (this.droite && !colision.Colision1(10, 0, blocos, getJoueur())) {
             x += 10;
             try {    	
         		this.sprite = ImageIO.read(getClass().getClassLoader().getResource("resources/sprite.png"));
@@ -82,10 +85,10 @@ public class Joueur {
         if (x < 0) { // collision avec le bord gauche de la scene
             x = 0;
         }
-        if(this.bas){
+        if(this.bas && !colision.Colision1(0, 10, blocos, getJoueur())){
             y+=10;  
         }
-        if(this.haut){
+        if(this.haut && !colision.Colision1(0, -10, blocos, getJoueur())){
             y-=10;
         }
         this.gravite();

@@ -61,8 +61,7 @@ public class Joueur {
    }
 
     public void miseAJour(int speed) {
-        int i;
-        for(i=0;i<3;i++){
+
         if (this.gauche && !colision.Colision1(-speed, 0, blocos, getJoueur())) {
             x -=speed;
             try {
@@ -92,8 +91,7 @@ public class Joueur {
         if(this.haut && !colision.Colision1(0, -speed, blocos, getJoueur())){
             y-=speed;
         }
-        speed = speed/2;
-    }
+
         this.gravite();
         if (this.saut) {
         	this.setY(this.getY()- 104);

@@ -50,7 +50,7 @@ public class Joueur {
 
    public void gravite() {
 	   if (this.getY() + sprite.getHeight() <= 10400 && !colision.Colision1(0, 5, blocos, getJoueur())) {
-			   this.setY(this.getY() + 5);
+			   this.setY(this.getY() + 10);
 			  
 	   }
 	   if (this.getY() + sprite.getHeight() > 10400) {
@@ -62,16 +62,16 @@ public class Joueur {
 
     public void miseAJour(int speed) {
 
-        if (this.gauche && !colision.Colision1(-speed, 0, blocos, getJoueur())) {
+        if (this.gauche && !colision.Colision1(-speed, -10, blocos, getJoueur())) {
             x -=speed;
             try {
-            	this.sprite = ImageIO.read(getClass().getClassLoader().getResource("resources/sprite.png"));
+            	this.sprite = ImageIO.read(getClass().getClassLoader().getResource("resources/spritemiroir.png"));
         		} catch (IOException ex) {
         		Logger.getLogger(Joueur.class.getName()).log(Level.SEVERE, null, ex);
         		}
             }
         
-        if (this.droite && !colision.Colision1(speed, 0, blocos, getJoueur())) {
+        if (this.droite && !colision.Colision1(speed, -10, blocos, getJoueur())) {
             x += speed;
             try {    	
         		this.sprite = ImageIO.read(getClass().getClassLoader().getResource("resources/sprite.png"));
@@ -93,8 +93,8 @@ public class Joueur {
         }
 
         this.gravite();
-        if (this.saut) {
-        	this.setY(this.getY()- 104);
+        if (this.saut && (colision.Colision1(-10, 10, blocos, getJoueur()) || colision.Colision1(10, 10, blocos, getJoueur()) || this.getY() + sprite.getHeight() == 10400 )) {
+        	this.setY(this.getY()- 150);
         	tempsSaut--;
         	if (tempsSaut <= 0) {
         		this.setSaut(false);

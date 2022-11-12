@@ -12,14 +12,18 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Z:/Mes%20documents/NetBeansProjects/Blow-up/Blow_up/src/blow_up/Jeu.java</file>
-            <file>file:/Z:/Mes%20documents/NetBeansProjects/Blow-up/Blow_up/src/blow_up/FenetreDeJeu.java</file>
-            <file>file:/Z:/Mes%20documents/NetBeansProjects/Blow-up/Blow_up/src/blow_up/Carte.java</file>
-            <file>file:/Z:/Mes%20documents/NetBeansProjects/Blow-up/Blow_up/src/blow_up/Block.java</file>
-            <file>file:/Z:/Mes%20documents/NetBeansProjects/Blow-up/Blow_up/src/blow_up/BlockSheet.java</file>
-            <file>file:/Z:/Mes%20documents/NetBeansProjects/Blow-up/Blow_up/src/blow_up/Blow_up.java</file>
-            <file>file:/Z:/Mes%20documents/NetBeansProjects/Blow-up/Blow_up/src/blow_up/Colision.java</file>
-            <file>file:/Z:/Mes%20documents/NetBeansProjects/Blow-up/Blow_up/src/blow_up/Joueur.java</file>
+            <file>file:/C:/Users/minea/OneDrive/Bureau/ENSMM/u2-vert/Info-Blow_up/Blow-up/Blow_up/src/blow_up/Joueur.java</file>
+            <file>file:/C:/Users/minea/OneDrive/Bureau/ENSMM/u2-vert/Info-Blow_up/Blow-up/Blow_up/src/blow_up/Carte.java</file>
+            <file>file:/C:/Users/minea/OneDrive/Bureau/ENSMM/u2-vert/Info-Blow_up/Blow-up/Blow_up/src/blow_up/Block.java</file>
+            <file>file:/C:/Users/minea/OneDrive/Bureau/ENSMM/u2-vert/Info-Blow_up/Blow-up/Blow_up/src/resources/victory.jpeg</file>
+            <file>file:/C:/Users/minea/OneDrive/Bureau/ENSMM/u2-vert/Info-Blow_up/Blow-up/Blow_up/src/resources/spritemiroir.png</file>
+            <file>file:/C:/Users/minea/OneDrive/Bureau/ENSMM/u2-vert/Info-Blow_up/Blow-up/Blow_up/src/blow_up/Jeu.java</file>
+            <file>file:/C:/Users/minea/OneDrive/Bureau/ENSMM/u2-vert/Info-Blow_up/Blow-up/Blow_up/src/blow_up/FenetreDeJeu.java</file>
+            <file>file:/C:/Users/minea/OneDrive/Bureau/ENSMM/u2-vert/Info-Blow_up/Blow-up/Blow_up/src/blow_up/BlockSheet.java</file>
+            <file>file:/C:/Users/minea/OneDrive/Bureau/ENSMM/u2-vert/Info-Blow_up/Blow-up/Blow_up/src/blow_up/Camera.java</file>
+            <file>file:/C:/Users/minea/OneDrive/Bureau/ENSMM/u2-vert/Info-Blow_up/Blow-up/Blow_up/src/blow_up/Colision.java</file>
+            <file>file:/C:/Users/minea/OneDrive/Bureau/ENSMM/u2-vert/Info-Blow_up/Blow-up/Blow_up/src/resources/sprite.png</file>
+            <file>file:/C:/Users/minea/OneDrive/Bureau/ENSMM/u2-vert/Info-Blow_up/Blow-up/Blow_up/src/blow_up/Blow_up.java</file>
         </group>
     </open-files>
 </project-private>

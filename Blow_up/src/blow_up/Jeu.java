@@ -41,7 +41,7 @@ public class Jeu {
     }
 
     try {
-        this.gameOver = ImageIO.read(getClass().getClassLoader().getResource("resources/GameOver.png"));            
+        this.gameOver = ImageIO.read(getClass().getClassLoader().getResource("resources/sprite.png"));            
         }
     catch (IOException ex) {
         Logger.getLogger(Jeu.class.getName()).log(Level.SEVERE, null, ex);}

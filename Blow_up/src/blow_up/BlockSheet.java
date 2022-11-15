@@ -18,7 +18,7 @@ public class BlockSheet {
     
     public static BufferedImage tilesheet;
     public static BufferedImage rocher, meteore, brique, bois;
-    protected static int width = 128, height = 128;
+    protected static int width = 104, height = 104;
     
     
     public BlockSheet(){

@@ -12,6 +12,7 @@ import java.util.stream.IntStream;
 import javax.imageio.ImageIO;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * 
@@ -27,7 +28,7 @@ public class Block {
     private boolean gen_up = false, gen_down = false, gen_right = false, gen_left = false;
     private  boolean est_fixe = false;
     
-    protected static int Bwidth = 128;
+    protected static int Bwidth = 104;
     protected static int spd = 5;
     
     
@@ -100,7 +101,12 @@ public class Block {
     }
 
     public void lancer() {
-        this.x = FenetreDeJeu.rand.nextInt(1000);
+        Random rand = new Random();
+        int min = 0;
+        int max = 9;
+        int nombreAleatoire = rand.nextInt(max - min + 1) + min;
+        System.out.println(nombreAleatoire);
+        this.x = nombreAleatoire*104;
         this.y = Camera.camera_y - 10*104;
     }
 

@@ -101,7 +101,7 @@ public class Block {
 
     public void lancer() {
         this.x = FenetreDeJeu.rand.nextInt(1000);
-        this.y = 90*104;
+        this.y = Camera.camera_y - 10*104;
     }
 
     public double getX() {

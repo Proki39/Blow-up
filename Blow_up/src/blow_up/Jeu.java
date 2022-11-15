@@ -41,10 +41,11 @@ public class Jeu {
     }
 
     try {
-        this.gameOver = ImageIO.read(getClass().getClassLoader().getResource("resources/sprite.png"));            
+        this.gameOver = ImageIO.read(getClass().getResource("../resources/GameOver.png"));            
         }
     catch (IOException ex) {
-        Logger.getLogger(Jeu.class.getName()).log(Level.SEVERE, null, ex);}
+        Logger.getLogger(Jeu.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 
@@ -86,7 +87,8 @@ public class Jeu {
         if(colision.estMort(unMonde.blocos, unJoueur)){
             
             contexte.drawImage(this.gameOver, 0, 0 , null);
-           return true;}
+           return true;
+        }
 
         return false; 
     }

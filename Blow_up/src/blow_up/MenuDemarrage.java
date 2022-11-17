@@ -5,7 +5,13 @@
 package blow_up;
 
 import com.sun.jdi.connect.spi.Connection;
+import java.io.IOException;
+import java.sql.DriverManager;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JTextField;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
@@ -17,6 +23,7 @@ public class MenuDemarrage extends javax.swing.JFrame {
      * Creates new form MenuDemarrage
      */
     public MenuDemarrage() {
+        
         initComponents();
         
     }
@@ -101,8 +108,14 @@ public class MenuDemarrage extends javax.swing.JFrame {
         listeJoueur.joueurs.add(new Joueur(nomJoueur.getText()));
         
         //ajout de ce joueur dans la base de donnée
-        //Connection connexion = SingletonJDBC.getInstance().getConnection();
-        
+        try{
+            java.sql.Connection connexion =  DriverManager.getConnection("jdbc:mariadb://nemrod.ens2m.fr:3306/2022-2023_s1_vs1_tp1_blowup", "user_blowup", "RiFSA*oR!f*F3sPc");
+            Statement statement = connexion.createStatement() ;
+            statement.executeUpdate("INSERT INTO Joueur (pseudo,latitudeX, longitudeY, derniereConnexion) "+ "VALUES ('lucien', 0, 10400, NOW())");
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
         System.out.println(listeJoueur.joueurs);
         FenetreDeJeu fenetre = new FenetreDeJeu();
         fenetre.setVisible(true);           

@@ -41,13 +41,32 @@ public class RectangleTimer {
         if (this.y > Jeu.unMonde.blocPlusHaut()+margin){
             this.y -= spd;
         }
-        
+        System.out.println(Jeu.unMonde.blocPlusHaut());
     }
     
     
     public void rendu(Graphics2D contexte) {
         contexte.drawImage(this.sprite, (int) x, (int) y - Camera.camera_y, null);
     }
+    
+    
+    
+    public boolean isColliding(int xnext, int ynext){
+        
+        
+        
+        return false;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     public double getX() {
         return x;

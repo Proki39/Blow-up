@@ -107,7 +107,14 @@ public class Block {
         int max = 9;
         int nombreAleatoire = rand.nextInt(max - min + 1) + min;
         this.x = nombreAleatoire*104;
-        this.y = Camera.camera_y - 10*104;
+        
+        if(Jeu.unMonde.blocPlusHaut()>99997){
+            this.y = 10400 - 10*104;
+        }else{
+            this.y = Jeu.unMonde.blocPlusHaut() - 10*104;
+        }
+        
+        
     }
 
     public double getX() {
@@ -199,8 +206,8 @@ public class Block {
                     
         }
         
-        for(int i=0; i<MondeGenerateur.blocos.size(); i++){
-            Block b = MondeGenerateur.blocos.get(i);
+        for(int i=0; i<Jeu.unMonde.blocos.size(); i++){
+            Block b = Jeu.unMonde.blocos.get(i);
             
             if(b == this){
                 continue;

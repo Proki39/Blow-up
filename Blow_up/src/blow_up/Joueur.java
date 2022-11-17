@@ -50,7 +50,7 @@ public class Joueur {
     }
 
    public void gravite() {
-	   if (this.getY() + sprite.getHeight() <= 10400 && !colision.Colision1(0, 5, Jeu.unMonde.blocos, getJoueur())) {
+	   if (this.getY() + sprite.getHeight() <= 10400 && !colision.Colision1(0, 10, Jeu.unMonde.blocos, getJoueur())) {
 			   this.setY(this.getY() + 10);
 			  
 	   }
@@ -63,7 +63,7 @@ public class Joueur {
 
     public void miseAJour(int speed) {
 
-        if (this.gauche && !colision.Colision1(-speed, -10, Jeu.unMonde.blocos, getJoueur())) {
+        if (this.gauche && !colision.Colision1(-speed, 0, Jeu.unMonde.blocos, getJoueur())) {
             x -=speed;
             try {
             	this.sprite = ImageIO.read(getClass().getClassLoader().getResource("resources/spritemiroir.png"));
@@ -72,7 +72,7 @@ public class Joueur {
         		}
             }
         
-        if (this.droite && !colision.Colision1(speed, -10, Jeu.unMonde.blocos, getJoueur())) {
+        if (this.droite && !colision.Colision1(speed, 0, Jeu.unMonde.blocos, getJoueur())) {
             x += speed;
             try {    	
         		this.sprite = ImageIO.read(getClass().getClassLoader().getResource("resources/sprite.png"));

@@ -32,12 +32,12 @@ public class InitialisationBDD {
             
             statement.executeUpdate("DELETE FROM Joueur;");           
             
-            statement.executeUpdate("INSERT INTO Joueur (pseudo,latitudeX, longitudeY, derniereConnexion) "+ "VALUES ('lucien', 1, 1, NOW())");
-            statement.executeUpdate("INSERT INTO Joueur (pseudo,latitudeX, longitudeY, derniereConnexion) "+ "VALUES ('rafael', 2, 2, NOW())");
-            statement.executeUpdate("INSERT INTO Joueur (pseudo,latitudeX, longitudeY, derniereConnexion) "+ "VALUES ('antoine', 3, 3, NOW())");
-            statement.executeUpdate("INSERT INTO Joueur (pseudo,latitudeX, longitudeY, derniereConnexion) "+ "VALUES ('victor', 4, 4, NOW())");
-            statement.executeUpdate("INSERT INTO Joueur (pseudo,latitudeX, longitudeY, derniereConnexion) "+ "VALUES ('leandre', 5, 5, NOW())");
-            
+//            statement.executeUpdate("INSERT INTO Joueur (pseudo,latitudeX, longitudeY, derniereConnexion) "+ "VALUES ('lucien', 1, 1, NOW())");
+//            statement.executeUpdate("INSERT INTO Joueur (pseudo,latitudeX, longitudeY, derniereConnexion) "+ "VALUES ('rafael', 2, 2, NOW())");
+//            statement.executeUpdate("INSERT INTO Joueur (pseudo,latitudeX, longitudeY, derniereConnexion) "+ "VALUES ('antoine', 3, 3, NOW())");
+//            statement.executeUpdate("INSERT INTO Joueur (pseudo,latitudeX, longitudeY, derniereConnexion) "+ "VALUES ('victor', 4, 4, NOW())");
+//            statement.executeUpdate("INSERT INTO Joueur (pseudo,latitudeX, longitudeY, derniereConnexion) "+ "VALUES ('leandre', 5, 5, NOW())");
+//            
            ResultSet resultat = statement.executeQuery("SELECT * FROM Joueur;");
             OutilsJDBC.afficherResultSet(resultat); 
             

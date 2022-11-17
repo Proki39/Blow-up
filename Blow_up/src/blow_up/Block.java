@@ -29,7 +29,7 @@ public class Block {
     private  boolean est_fixe = false;
     
     protected static int Bwidth = 104;
-    protected static int spd = 5;
+    protected static int spd = 6;
     
     
 

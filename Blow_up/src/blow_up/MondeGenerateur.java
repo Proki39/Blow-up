@@ -17,7 +17,7 @@ public class MondeGenerateur {
     
     public static List<Block> blocos =  new ArrayList<Block>();
     
-    private double SpawnRate = 4;
+    private double SpawnRate = 2;
     
     private double Timer = 0;
     

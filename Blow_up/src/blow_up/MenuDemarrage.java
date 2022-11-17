@@ -98,7 +98,8 @@ public class MenuDemarrage extends javax.swing.JFrame {
     private void playActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playActionPerformed
 
             FenetreDeJeu fenetre = new FenetreDeJeu();
-            fenetre.setVisible(true); 
+            fenetre.setVisible(true);
+            //listeJoueur.joueurs.add(newJoueur())
             this.setVisible(false);
         
             

@@ -32,7 +32,7 @@ public class Jeu {
     this.uneCarte = new Carte();
     this.unMonde = new MondeGenerateur();
     this.unRectTimer = new RectangleTimer();
-    this.unJoueur = new Joueur(unMonde.blocos);
+    this.unJoueur = new Joueur();
     this.score = 0;
     this.colision = new Colision();
     try {

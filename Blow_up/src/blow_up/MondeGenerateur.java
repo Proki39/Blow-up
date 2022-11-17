@@ -18,6 +18,10 @@ public class MondeGenerateur {
     public static List<Block> blocos =  new ArrayList<Block>();
     
     private double SpawnRate = 2;
+
+    public static List<Block> getBlocos() {
+        return blocos;
+    }
     
     private double Timer = 0;
     

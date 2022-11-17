@@ -27,10 +27,11 @@ public class Joueur {
     private boolean gauche, droite, bas, haut, saut;
     public static int tempsSaut = 1 ; 
     private Colision colision;
-    public List<Block> blocos =  new ArrayList<Block>();
+    //public List<Block> blocos =  new ArrayList<Block>();
+    private String name;
   
 
-    public Joueur(List<Block> blocos) {
+    public Joueur() {
         this.x = 540;
         this.y = 10400;
         this.gauche = false;
@@ -38,7 +39,7 @@ public class Joueur {
         this.bas = false;
         this.haut = false;
         this.saut = false;
-        this.blocos = blocos;
+        //this.blocos = blocos;
         this.colision = new Colision();
 
         try {
@@ -49,7 +50,7 @@ public class Joueur {
     }
 
    public void gravite() {
-	   if (this.getY() + sprite.getHeight() <= 10400 && !colision.Colision1(0, 5, blocos, getJoueur())) {
+	   if (this.getY() + sprite.getHeight() <= 10400 && !colision.Colision1(0, 5, Jeu.unMonde.blocos, getJoueur())) {
 			   this.setY(this.getY() + 10);
 			  
 	   }
@@ -62,7 +63,7 @@ public class Joueur {
 
     public void miseAJour(int speed) {
 
-        if (this.gauche && !colision.Colision1(-speed, -10, blocos, getJoueur())) {
+        if (this.gauche && !colision.Colision1(-speed, -10, Jeu.unMonde.blocos, getJoueur())) {
             x -=speed;
             try {
             	this.sprite = ImageIO.read(getClass().getClassLoader().getResource("resources/spritemiroir.png"));
@@ -71,7 +72,7 @@ public class Joueur {
         		}
             }
         
-        if (this.droite && !colision.Colision1(speed, -10, blocos, getJoueur())) {
+        if (this.droite && !colision.Colision1(speed, -10, Jeu.unMonde.blocos, getJoueur())) {
             x += speed;
             try {    	
         		this.sprite = ImageIO.read(getClass().getClassLoader().getResource("resources/sprite.png"));
@@ -85,15 +86,15 @@ public class Joueur {
         if (x < 0) { // collision avec le bord gauche de la scene
             x = 0;
         }
-        if(this.bas && !colision.Colision1(0, speed, blocos, getJoueur())){
+        if(this.bas && !colision.Colision1(0, speed, Jeu.unMonde.blocos, getJoueur())){
             y+=speed; 
         }
-        if(this.haut && !colision.Colision1(0, -speed, blocos, getJoueur())){
+        if(this.haut && !colision.Colision1(0, -speed, Jeu.unMonde.blocos, getJoueur())){
             y-=speed;
         }
 
         this.gravite();
-        if (this.saut && (colision.Colision1(-10, 10, blocos, getJoueur()) || colision.Colision1(10, 10, blocos, getJoueur()) || this.getY() + sprite.getHeight() == 10400 )) {
+        if (this.saut && (colision.Colision1(-10, 10, Jeu.unMonde.blocos, getJoueur()) || colision.Colision1(10, 10, Jeu.unMonde.blocos, getJoueur()) || this.getY() + sprite.getHeight() == 10400 )) {
         	this.setY(this.getY()- 150);
         	tempsSaut--;
         	if (tempsSaut <= 0) {

@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 import javax.swing.JTextField;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.PreparedStatement;
 
 /**
  *
@@ -106,17 +107,22 @@ public class MenuDemarrage extends javax.swing.JFrame {
     private void playActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playActionPerformed
         // création d'un nouveau joueur en cliquant sur play  
         listeJoueur.joueurs.add(new Joueur(nomJoueur.getText()));
+        System.out.println(listeJoueur.joueurs);
         
         //ajout de ce joueur dans la base de donnée
         try{
             java.sql.Connection connexion =  DriverManager.getConnection("jdbc:mariadb://nemrod.ens2m.fr:3306/2022-2023_s1_vs1_tp1_blowup", "user_blowup", "RiFSA*oR!f*F3sPc");
-            Statement statement = connexion.createStatement() ;
-            statement.executeUpdate("INSERT INTO Joueur (pseudo,latitudeX, longitudeY, derniereConnexion) "+ "VALUES ('lucien', 0, 10400, NOW())");
+//            Statement statement = connexion.createStatement();
+//            statement.executeUpdate("INSERT INTO Joueur (pseudo,latitudeX, longitudeY, derniereConnexion) "+ "VALUES ('lucien', 1, 1, NOW())");
+
+            PreparedStatement requete = connexion.prepareStatement("INSERT INTO Joueur (pseudo, latitudeX, longitudeY, derniereConnexion) VALUES (?, 0, 10400, NOW())");
+            requete.setString(1,nomJoueur.getText());
+            requete.executeUpdate();
             
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        System.out.println(listeJoueur.joueurs);
+        
         FenetreDeJeu fenetre = new FenetreDeJeu();
         fenetre.setVisible(true);           
         this.setVisible(false);

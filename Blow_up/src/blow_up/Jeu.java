@@ -21,6 +21,7 @@ public class Jeu {
     private Joueur unJoueur;
     private Carte uneCarte;
     public MondeGenerateur unMonde;
+    public RectangleTimer unRectTimer;
     private int score;
     private BufferedImage victory, gameOver;
     private Colision colision;
@@ -30,6 +31,7 @@ public class Jeu {
     public Jeu() {    
     this.uneCarte = new Carte();
     this.unMonde = new MondeGenerateur();
+    this.unRectTimer = new RectangleTimer();
     this.unJoueur = new Joueur(unMonde.blocos);
     this.score = 0;
     this.colision = new Colision();
@@ -56,6 +58,7 @@ public class Jeu {
         uneCarte.rendu(contexte);
         unJoueur.rendu(contexte);
         unMonde.rendu(contexte);
+        unRectTimer.rendu(contexte);
         contexte.drawString("Score : " + score, 20, 40);
         // 1. Rendu du décor
         //uneCarte.rendu(contexte);
@@ -70,6 +73,7 @@ public class Jeu {
     public void miseAJour () {
        uneCarte.miseAJour();
        unMonde.miseAJour();
+       unRectTimer.miseAJour();
        unJoueur.miseAJour(10);
        this.score = 10400- (int) this.unJoueur.getY();
         // 1. Mise à jour de l’avatar en fonction des commandes des joueurs

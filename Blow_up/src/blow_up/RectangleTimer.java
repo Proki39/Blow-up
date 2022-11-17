@@ -4,6 +4,7 @@
  */
 package blow_up;
 
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -17,10 +18,14 @@ import javax.imageio.ImageIO;
 public class RectangleTimer {
     
     protected BufferedImage sprite;
-    protected double x, y;
+    protected double x, y, spd;
     
     public RectangleTimer(){
-    
+        //Localisation initiale
+        this.x = -100;
+        this.y = 10600;
+        this.spd = 5;
+        
         //SPRITE
         try {
         	this.sprite = ImageIO.read(getClass().getClassLoader().getResource("resources/RectangleTimer.png"));            
@@ -29,4 +34,23 @@ public class RectangleTimer {
         }
         
     }
+    
+    
+    public void miseAJour() {
+        //this.y -= spd;
+    }
+    
+    
+    public void rendu(Graphics2D contexte) {
+        contexte.drawImage(this.sprite, (int) x, (int) y - Camera.camera_y, null);
+    }
+    
+    public double getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
+    }
+    
 }

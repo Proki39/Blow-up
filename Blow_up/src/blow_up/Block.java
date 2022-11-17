@@ -105,7 +105,6 @@ public class Block {
         int min = 0;
         int max = 9;
         int nombreAleatoire = rand.nextInt(max - min + 1) + min;
-        System.out.println(nombreAleatoire);
         this.x = nombreAleatoire*104;
         this.y = Camera.camera_y - 10*104;
     }

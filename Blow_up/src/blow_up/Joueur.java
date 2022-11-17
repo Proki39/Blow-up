@@ -109,7 +109,8 @@ public class Joueur {
 
 
     public void rendu(Graphics2D contexte) {
-            contexte.drawImage(this.sprite, (int) x, (int) y - Camera.camera_y, null);       
+            contexte.drawImage(this.sprite, (int) x, (int) y - Camera.camera_y, null);
+
 
         
     }

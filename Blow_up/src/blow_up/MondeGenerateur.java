@@ -17,7 +17,7 @@ public class MondeGenerateur {
     
     public static List<Block> blocos =  new ArrayList<Block>();
     
-    private double SpawnRate = 2;
+    private double SpawnRate = 3;
 
     public static List<Block> getBlocos() {
         return blocos;
@@ -28,7 +28,6 @@ public class MondeGenerateur {
     
     public MondeGenerateur() {
         
-        blocos.add(new Block());
 
         
     }

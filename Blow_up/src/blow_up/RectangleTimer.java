@@ -5,6 +5,7 @@
 package blow_up;
 
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -20,12 +21,14 @@ public class RectangleTimer {
     protected BufferedImage sprite;
     protected double x, y, spd, margin;
     
+    protected static int width = 10400;
+    
     public RectangleTimer(){
         //Localisation initiale
         this.x = -100;
-        this.y = 10600;
+        this.y = 10700;
         this.spd = 5;
-        this.margin = 300;
+        this.margin = 500;
         
         //SPRITE
         try {
@@ -42,6 +45,8 @@ public class RectangleTimer {
             this.y -= spd;
         }
         System.out.println(Jeu.unMonde.blocPlusHaut());
+        
+
     }
     
     
@@ -51,11 +56,13 @@ public class RectangleTimer {
     
     
     
-    public boolean isColliding(int xnext, int ynext){
+    public boolean isTouchingRect(int xnext, int ynext){
         
+        Rectangle HitJoueur = new Rectangle(xnext,ynext,50,110);
+        Rectangle HitRectTimer = new Rectangle((int) this.x,(int) this.y,this.width,this.width);
         
-        
-        return false;
+        return HitJoueur.intersects(HitRectTimer);
+
     }
     
     

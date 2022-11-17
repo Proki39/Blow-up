@@ -93,6 +93,12 @@ public class Jeu {
             contexte.drawImage(this.gameOver, 0, 0 , null);
            return true;
         }
+        
+        //Si le rectangle touche le joueur
+        if(unRectTimer.isTouchingRect((int) unJoueur.getX(),(int) unJoueur.getY())){
+            contexte.drawImage(this.gameOver, 0, 0 , null);
+            return true;
+        }
 
         return false; 
     }

@@ -13,4 +13,5 @@ import java.util.List;
  */
 public class listeJoueur {
     public static List<Joueur> joueurs =  new ArrayList<Joueur>();
+    
 }

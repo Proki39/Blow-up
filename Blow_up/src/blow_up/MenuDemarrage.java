@@ -4,6 +4,7 @@
  */
 package blow_up;
 
+import com.sun.jdi.connect.spi.Connection;
 import javax.swing.JTextField;
 
 /**
@@ -96,11 +97,17 @@ public class MenuDemarrage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void playActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playActionPerformed
-
-            FenetreDeJeu fenetre = new FenetreDeJeu();
-            fenetre.setVisible(true);
-            //listeJoueur.joueurs.add(newJoueur())
-            this.setVisible(false);
+        // création d'un nouveau joueur en cliquant sur play  
+        listeJoueur.joueurs.add(new Joueur(nomJoueur.getText()));
+        
+        //ajout de ce joueur dans la base de donnée
+        //Connection connexion = SingletonJDBC.getInstance().getConnection();
+        
+        System.out.println(listeJoueur.joueurs);
+        FenetreDeJeu fenetre = new FenetreDeJeu();
+        fenetre.setVisible(true);           
+        this.setVisible(false);
+            
         
             
     }//GEN-LAST:event_playActionPerformed

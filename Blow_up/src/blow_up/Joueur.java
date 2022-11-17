@@ -31,7 +31,7 @@ public class Joueur {
     private String name;
   
 
-    public Joueur() {
+    public Joueur(String name) {
         this.x = 540;
         this.y = 10400;
         this.gauche = false;
@@ -41,6 +41,7 @@ public class Joueur {
         this.saut = false;
         //this.blocos = blocos;
         this.colision = new Colision();
+        this.name = name;
 
         try {
         	this.sprite = ImageIO.read(getClass().getClassLoader().getResource("resources/sprite.png"));            
@@ -155,6 +156,11 @@ public class Joueur {
     
     public Joueur getJoueur(){
         return this;
+    }
+
+    @Override
+    public String toString() {
+        return "Joueur{" + "x=" + x + ", y=" + y + ", name=" + name + '}';
     }
     
 

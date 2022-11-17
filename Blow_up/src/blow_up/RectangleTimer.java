@@ -18,13 +18,14 @@ import javax.imageio.ImageIO;
 public class RectangleTimer {
     
     protected BufferedImage sprite;
-    protected double x, y, spd;
+    protected double x, y, spd, margin;
     
     public RectangleTimer(){
         //Localisation initiale
         this.x = -100;
         this.y = 10600;
         this.spd = 5;
+        this.margin = 300;
         
         //SPRITE
         try {
@@ -37,7 +38,10 @@ public class RectangleTimer {
     
     
     public void miseAJour() {
-        //this.y -= spd;
+        if (this.y > Jeu.unMonde.blocPlusHaut()+margin){
+            this.y -= spd;
+        }
+        
     }
     
     

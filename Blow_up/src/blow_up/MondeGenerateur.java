@@ -57,4 +57,25 @@ public class MondeGenerateur {
         
     }
     
+    public double blocPlusHaut(){
+        double maxY = 99999;
+        
+        //Optimization
+        int j=0;
+        
+        if (this.blocos.size()>50){
+            j = this.blocos.size()-50;  //S'il y a plus de 50 blocs, verifier les 50 derniers
+        }
+        
+        for(int i=j; i<this.blocos.size(); i++){
+            Block b = MondeGenerateur.blocos.get(i);
+            
+            if (b.getYfixe()<maxY){
+                maxY = b.getYfixe();
+            }
+        }
+        
+        return maxY;
+    }
+    
 }

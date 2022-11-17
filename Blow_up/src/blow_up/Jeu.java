@@ -20,7 +20,7 @@ import javax.imageio.ImageIO;
 public class Jeu {
     private Joueur unJoueur;
     private Carte uneCarte;
-    public MondeGenerateur unMonde;
+    public static MondeGenerateur unMonde;
     public RectangleTimer unRectTimer;
     private int score;
     private BufferedImage victory, gameOver;

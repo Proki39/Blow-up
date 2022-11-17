@@ -77,6 +77,7 @@ public class Block {
                 y = 10400-getLargeur();
                 est_fixe = true;
             }
+            
         }
         
     }
@@ -250,6 +251,14 @@ public class Block {
         }
         
         return false;
+    }
+    
+    public double getYfixe(){
+        if (this.est_fixe){
+            return this.y;
+        }else{
+            return 9999999;
+        }
     }
     
 

@@ -74,7 +74,7 @@ public class Jeu {
        uneCarte.miseAJour();
        unMonde.miseAJour();
        unRectTimer.miseAJour();
-       unJoueur.miseAJour(10);
+       unJoueur.miseAJour();
        this.score = 10400- (int) this.unJoueur.getY();
         // 1. Mise à jour de l’avatar en fonction des commandes des joueurs
         // 2. Mise à jour des autres éléments (objets, monstres, etc.)
@@ -88,7 +88,7 @@ public class Jeu {
             return true;
         }
         // Renvoie vrai si la partie est terminée (gagnée ou perdue)
-        if(colision.estMort(unMonde.blocos, unJoueur)){
+        if(colision.estMort((float) unJoueur.getX(), (float) unJoueur.getY(), unMonde.blocos)){
             
             contexte.drawImage(this.gameOver, 0, 0 , null);
            return true;

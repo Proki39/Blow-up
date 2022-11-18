@@ -126,11 +126,11 @@ public class Block {
     }
     
     public double getLargeur() {
-        return sprite.getHeight();
+        return sprite.getWidth();
     }
 
     public double getHauteur() {
-        return sprite.getWidth();
+        return sprite.getHeight();
     }
     
     

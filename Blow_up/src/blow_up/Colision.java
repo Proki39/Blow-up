@@ -1,77 +1,94 @@
 package blow_up;
 
+import java.security.KeyStore.TrustedCertificateEntry;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Colision {
     
-    public Colision(){
+    public static boolean peutBouger(float x, float y, float width, float height, List<Block> blocos){
+        if(!estSolide(x, y, blocos))
+            if(!estSolide(x+width, y+height, blocos))
+                if(!estSolide(x+width, y, blocos))
+                    if(!estSolide(x, y+height, blocos))
+                        return true;
+        return false;
+
+    }
+
+    public static boolean estSolide(float x, float y, List<Block> blocos){
+        if(x < 0 || x >= 1040)
+            return true;
+        if(y >= 10400)
+            return true;
+        for(int i=0; i<blocos.size(); i++){
+            if(blocos.get(i).getGenUp() &&                                            //Colision avec le carré superieur
+            y >= blocos.get(i).getY() - blocos.get(i).getHauteur() &&
+            x >= blocos.get(i).getX() &&
+            x <= blocos.get(i).getX()+blocos.get(i).getLargeur() &&
+            y <= blocos.get(i).getY()){
+                return true;}
         
+            if(blocos.get(i).getGenDown() &&                                            //Colision avec le carré inferieur
+            y >= blocos.get(i).getY() + blocos.get(i).getHauteur() &&
+            x >= blocos.get(i).getX() &&
+            x <= blocos.get(i).getX()+blocos.get(i).getLargeur() &&
+            y <= blocos.get(i).getY() + 2*blocos.get(i).getHauteur()){
+                return true;}
+        
+            if(blocos.get(i).getGenRight() &&                                            //Colision avec le carré droite
+            y>=blocos.get(i).getY() &&
+            x>=blocos.get(i).getX()+blocos.get(i).getLargeur() &&
+            x<=blocos.get(i).getX()+2*blocos.get(i).getLargeur() &&
+            y<=blocos.get(i).getY()+blocos.get(i).getHauteur()){
+                return true;}
+        
+            if(blocos.get(i).getGenLeft() &&                                            //Colision avec le carré gauche
+            y>=blocos.get(i).getY() &&
+            x>=blocos.get(i).getX() - blocos.get(i).getLargeur() &&
+            x<=blocos.get(i).getX() &&
+            y<=blocos.get(i).getY() + blocos.get(i).getHauteur()){
+                return true;}
+
+            if(y>=blocos.get(i).getY() &&                                               //Colision avec le care centale
+            x>=blocos.get(i).getX() &&
+            x<=blocos.get(i).getX()+blocos.get(i).getLargeur() &&
+            y<=blocos.get(i).getY()+blocos.get(i).getHauteur()){
+                return true;}
+            }
+        return false;
     }
     
-    //la methode Colision1 interdit le joueur de se deplacer dans le bloc
-    public boolean Colision1(int speedX, int speedY, List<Block> blocos, Joueur unJoueur){
-        for(int i=0; i<blocos.size(); i++){
-        if(blocos.get(i).getGenUp() &&                                            //Colision avec le carré superieur
-        unJoueur.getY()+unJoueur.getLargeur()+speedY>=blocos.get(i).getY() - blocos.get(i).getHauteur() &&
-        unJoueur.getX()+unJoueur.getHauteur()+speedX-45>=blocos.get(i).getX() &&
-        unJoueur.getX()+speedX<=blocos.get(i).getX()+blocos.get(i).getHauteur() &&
-        unJoueur.getY()+speedY+10<=blocos.get(i).getY()+blocos.get(i).getLargeur()){
-            return true;}
-
-        if(blocos.get(i).getGenDown() &&                                            //Colision avec le carré inferieur
-        unJoueur.getY()+unJoueur.getLargeur()+speedY>=blocos.get(i).getY() &&
-        unJoueur.getX()+unJoueur.getHauteur()+speedX-45>=blocos.get(i).getX() &&
-        unJoueur.getX()+speedX<=blocos.get(i).getX()+blocos.get(i).getHauteur() &&
-        unJoueur.getY()+speedY+10<=blocos.get(i).getY()+blocos.get(i).getLargeur() + blocos.get(i).getHauteur()){
-            return true;}
-
-        if(blocos.get(i).getGenRight() &&                                            //Colision avec le carré droite
-        unJoueur.getY()+unJoueur.getLargeur()+speedY>=blocos.get(i).getY() &&
-        unJoueur.getX()+unJoueur.getHauteur()+speedX-45>=blocos.get(i).getX() &&
-        unJoueur.getX()+speedX<=blocos.get(i).getX()+blocos.get(i).getHauteur() + blocos.get(i).getLargeur() &&
-        unJoueur.getY()+speedY+10<=blocos.get(i).getY()+blocos.get(i).getLargeur()){
-            return true;}
-
-        if(blocos.get(i).getGenLeft() &&                                            //Colision avec le carré gauche
-        unJoueur.getY()+unJoueur.getLargeur()+speedY>=blocos.get(i).getY() &&
-        unJoueur.getX()+unJoueur.getHauteur()+speedX-45>=blocos.get(i).getX() - blocos.get(i).getLargeur() &&
-        unJoueur.getX()+speedX<=blocos.get(i).getX()+blocos.get(i).getHauteur() &&
-        unJoueur.getY()+speedY+10<=blocos.get(i).getY()+blocos.get(i).getLargeur()){
-            return true;}
-    }
-            return false;
-    }
 
     //la methode estMort verifie si le block a ecrasé le joueur
-    public boolean estMort(List<Block> blocos, Joueur unJoueur){
+    public boolean estMort(float x, float y, List<Block> blocos){
         for(int i=0; i<blocos.size(); i++){
-        if(blocos.get(i).getGenDown() &&                                            //Colision avec le carré inferieur
-        unJoueur.getY()+unJoueur.getLargeur()>blocos.get(i).getY() &&
-        unJoueur.getX()+unJoueur.getHauteur()-45>blocos.get(i).getX() &&
-        unJoueur.getX()<blocos.get(i).getX()+blocos.get(i).getHauteur() &&
-        unJoueur.getY()+10<blocos.get(i).getY()+blocos.get(i).getLargeur() + 128){
-            return true;}
+            if(y>blocos.get(i).getY() &&                                               //Colision avec le care centale
+            x>blocos.get(i).getX() &&
+            x<blocos.get(i).getX()+blocos.get(i).getLargeur() &&
+            y<blocos.get(i).getY()+blocos.get(i).getHauteur()){
+                return true;}
         
-        if(unJoueur.getY()+unJoueur.getLargeur()>blocos.get(i).getY() &&          //Colision avec le centre du carré
-        unJoueur.getX()+unJoueur.getHauteur()-45>blocos.get(i).getX() &&
-        unJoueur.getX()<blocos.get(i).getX()+blocos.get(i).getHauteur() &&
-        unJoueur.getY()+10<blocos.get(i).getY()+blocos.get(i).getLargeur()){
-            return true;}
+            if(blocos.get(i).getGenDown() &&                                            //Colision avec le carré inferieur
+            y > blocos.get(i).getY() + blocos.get(i).getHauteur() &&
+            x > blocos.get(i).getX() &&
+            x < blocos.get(i).getX()+blocos.get(i).getLargeur() &&
+            y < blocos.get(i).getY() + 2*blocos.get(i).getHauteur()){
+                return true;}
         
-        if(blocos.get(i).getGenLeft() &&                                            //Colision avec le carré gauche
-        unJoueur.getY()+unJoueur.getLargeur()>blocos.get(i).getY() &&
-        unJoueur.getX()+unJoueur.getHauteur()-45>blocos.get(i).getX() - blocos.get(i).getLargeur() &&
-        unJoueur.getX()<blocos.get(i).getX()+blocos.get(i).getHauteur() &&
-        unJoueur.getY()+10<blocos.get(i).getY()+blocos.get(i).getLargeur()){
-            return true;}
+            if(blocos.get(i).getGenRight() &&                                            //Colision avec le carré droite
+            y>blocos.get(i).getY() &&
+            x>blocos.get(i).getX()+blocos.get(i).getLargeur() &&
+            x<blocos.get(i).getX()+2*blocos.get(i).getLargeur() &&
+            y<blocos.get(i).getY()+blocos.get(i).getHauteur()){
+                return true;}
         
-        if(blocos.get(i).getGenRight() &&                                            //Colision avec le carré droite
-        unJoueur.getY()+unJoueur.getLargeur()>blocos.get(i).getY() &&
-        unJoueur.getX()+unJoueur.getHauteur()-45>blocos.get(i).getX() &&
-        unJoueur.getX()<blocos.get(i).getX()+blocos.get(i).getHauteur() + blocos.get(i).getLargeur() &&
-        unJoueur.getY()+10<blocos.get(i).getY()+blocos.get(i).getLargeur()){
-            return true;}}
+            if(blocos.get(i).getGenLeft() &&                                            //Colision avec le carré gauche
+            y>blocos.get(i).getY() &&
+            x>blocos.get(i).getX() - blocos.get(i).getLargeur() &&
+            x<blocos.get(i).getX() &&
+            y<blocos.get(i).getY() + blocos.get(i).getHauteur()){
+                    return true;}}
         
         return false;
     }

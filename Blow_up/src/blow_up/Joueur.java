@@ -25,13 +25,16 @@ import java.util.ArrayList;
  */
 public class Joueur {
 
-    protected BufferedImage sprite;
+    protected BufferedImage sprite, coeur;
     protected double x, y;
     private boolean gauche, droite, bas, haut, saut;
     public static int tempsSaut = 1 ; 
     private String name;
     protected Rectangle2D.Float hitBox;
     private float xDrawOffset = 36;
+    private int nbLife;
+    private int nbSaut;
+    
 
     public Joueur(String name) {
         this.x = 540;
@@ -42,10 +45,17 @@ public class Joueur {
         this.haut = false;
         this.saut = false;
         this.name = name;
+        this.nbLife = 3;
+        this.nbSaut = 2;
         
         try {
         	this.sprite = ImageIO.read(getClass().getClassLoader().getResource("resources/sprite.png"));            
         	} catch (IOException ex) {
+            Logger.getLogger(Joueur.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            this.coeur = ImageIO.read(getClass().getClassLoader().getResource("resources/Coeur1.png"));
+        } catch (IOException ex) {
             Logger.getLogger(Joueur.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -94,13 +104,16 @@ public class Joueur {
         if (this.saut &&
         (!Colision.peutBouger((float) hitBox.x+10, (float) hitBox.y+10, hitBox.width, hitBox.height, Jeu.unMonde.blocos) || 
         !Colision.peutBouger((float) hitBox.x-10, (float) hitBox.y+10, hitBox.width, hitBox.height, Jeu.unMonde.blocos) || 
-        hitBox.y + hitBox.height == 10400)) {
-        	speedY -= 150;
-        	tempsSaut--;
-        	if (tempsSaut <= 0) {
-        		this.setSaut(false);
-                tempsSaut = 1;
-        	}
+        hitBox.y + hitBox.height == 10400 ||  this.nbSaut !=0)) {
+        	if( this.nbSaut !=0 ){
+                this.nbSaut = this.nbSaut -1;
+                this.setY(this.getY()- 150);
+                tempsSaut--;
+                if (tempsSaut <= 0) {
+                        this.setSaut(false);
+    	}} else {
+                this.setNbSaut(2);
+            }
         }
 
         if (Colision.peutBouger((float) hitBox.x, (float) hitBox.y+10,              //gravité
@@ -125,9 +138,26 @@ public class Joueur {
 
     public void rendu(Graphics2D contexte) {
             contexte.drawImage(this.sprite, (int) (hitBox.x - xDrawOffset), (int) (hitBox.y - Camera.camera_y), null);
+            this.renduVie(contexte);
+            contexte.drawString(this.name,(int) this.getX()+20,(int)(this.getY() - (Camera.camera_y)-30));
             drawHitbox(contexte);
 
         
+    }
+    
+    public void renduVie(Graphics2D contexte){
+        if(this.nbLife == 3){
+            contexte.drawImage(this.coeur, (int) this.getX(), (int) (this.getY() - (Camera.camera_y)-25), null);
+            contexte.drawImage(this.coeur, (int) this.getX()+28, (int) (this.getY() - (Camera.camera_y)-25), null);
+            contexte.drawImage(this.coeur, (int) this.getX()+56, (int) (this.getY() - (Camera.camera_y)-25), null);
+        }
+        if(this.nbLife == 2){
+            contexte.drawImage(this.coeur, (int) this.getX(), (int) (this.getY() - (Camera.camera_y)-25), null);
+            contexte.drawImage(this.coeur, (int) this.getX()+28, (int) (this.getY() - (Camera.camera_y)-25), null);
+        }
+        if(this.nbLife == 1){
+            contexte.drawImage(this.coeur, (int) this.getX(), (int) (this.getY() - (Camera.camera_y)-25), null);
+        }
     }
 
     public void setGauche(boolean gauche) {
@@ -149,6 +179,14 @@ public class Joueur {
     
     public void setY(double y) {
         hitBox.y = (float) y;
+    }
+    
+    public void setX(double x) {
+        hitBox.x = (float) x;
+    }
+    
+    public void setNbSaut(int saut) {
+    	this.nbSaut = saut;
     }
 
     public double getX() {
@@ -175,6 +213,25 @@ public class Joueur {
     public String toString() {
         return "Joueur{" + "x=" + x + ", y=" + y + ", name=" + name + '}';
     }
+    public boolean estMortDefinitivement() {
+        return nbLife == 0;
+    }
+
+    public void perdreUneVie() {
+        this.nbLife = this.nbLife - 1;
+
+    }
+
+    public void respawn() {
+        this.perdreUneVie();
+        this.setX(540);
+        this.setY(Camera.camera_y - 100);
+    }
+
+  public void setnbLife(int a) {
+        this.nbLife = a;
+    }
     
+  
 
 }

@@ -79,7 +79,8 @@ public class Jeu {
 			return true;
 		}
 		// Renvoie vrai si la partie est terminée (gagnée ou perdue)
-		if (colision.estMort((float) unJoueur.getX(), (float) unJoueur.getY(), unMonde.blocos)) {
+		if (colision.estMort((float) unJoueur.getX(), (float) unJoueur.getY(), (float) unJoueur.getLargeur(), 
+		(float) unJoueur.getHauteur(), unMonde.blocos)) {
 			this.unJoueur.respawn();
 		}
 		if (this.unJoueur.estMortDefinitivement()) {

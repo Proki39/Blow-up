@@ -16,6 +16,16 @@ public class Colision {
 
     }
 
+    public static boolean estMort(float x, float y, float width, float height, List<Block> blocos){
+        if(!dansBlock(x, y, blocos))
+            if(!dansBlock(x+width, y+height, blocos))
+                if(!dansBlock(x+width, y, blocos))
+                    if(!dansBlock(x, y+height, blocos))
+                        return false;
+        return true;
+
+    }
+
     public static boolean estSolide(float x, float y, List<Block> blocos){
         if(x < 0 || x >= 1040)
             return true;
@@ -61,7 +71,7 @@ public class Colision {
     
 
     //la methode estMort verifie si le block a ecrasé le joueur
-    public boolean estMort(float x, float y, List<Block> blocos){
+    public static boolean dansBlock(float x, float y, List<Block> blocos){
         for(int i=0; i<blocos.size(); i++){
             if(y>blocos.get(i).getY() &&                                               //Colision avec le care centale
             x>blocos.get(i).getX() &&

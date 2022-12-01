@@ -101,11 +101,12 @@ public class Joueur {
         if(this.haut && !this.bas)
             speedY-=2*speed;
 
-        if (this.saut &&
+        if (this.saut && 
+        Colision.peutBouger((float) hitBox.x, (float) hitBox.y-150, hitBox.width, hitBox.height, Jeu.unMonde.blocos) &&
         (!Colision.peutBouger((float) hitBox.x+10, (float) hitBox.y+10, hitBox.width, hitBox.height, Jeu.unMonde.blocos) || 
         !Colision.peutBouger((float) hitBox.x-10, (float) hitBox.y+10, hitBox.width, hitBox.height, Jeu.unMonde.blocos) || 
         hitBox.y + hitBox.height == 10400 ||  this.nbSaut !=0)) {
-        	if( this.nbSaut !=0 ){
+        	if( this.nbSaut !=0){
                 this.nbSaut = this.nbSaut -1;
                 this.setY(this.getY()- 150);
                 tempsSaut--;
@@ -214,12 +215,11 @@ public class Joueur {
         return "Joueur{" + "x=" + x + ", y=" + y + ", name=" + name + '}';
     }
     public boolean estMortDefinitivement() {
-        return nbLife == 0;
+        return nbLife <= 0;
     }
 
     public void perdreUneVie() {
         this.nbLife = this.nbLife - 1;
-
     }
 
     public void respawn() {
@@ -232,6 +232,5 @@ public class Joueur {
         this.nbLife = a;
     }
     
-  
 
 }

@@ -39,7 +39,7 @@ public class JoueurBDD {
                 String pseudo = resultat.getString("pseudo");
                 double latitude = resultat.getDouble("latitudeX");
                 double longitude = resultat.getDouble("longitudeY");
-                System.out.println(pseudo + " = (" + latitude + "; " + longitude + ")");
+                //System.out.println(pseudo + " = (" + latitude + "; " + longitude + ")");
                 
                 int x = laCarte.longitudeEnPixel(longitude);
                 int y = laCarte.latitudeEnPixel(latitude);

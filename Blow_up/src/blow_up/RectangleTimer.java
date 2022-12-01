@@ -44,7 +44,7 @@ public class RectangleTimer {
         if (this.y > Jeu.unMonde.blocPlusHaut()+margin){
             this.y -= spd;
         }
-        System.out.println(Jeu.unMonde.blocPlusHaut());
+        //System.out.println(Jeu.unMonde.blocPlusHaut());
         
 
     }

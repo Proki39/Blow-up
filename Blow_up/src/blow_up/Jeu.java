@@ -83,8 +83,8 @@ public class Jeu {
 		(float) unJoueur.getHauteur(), unMonde.blocos)) {
 			this.unJoueur.respawn();
 		}
-		if (this.unJoueur.estMortDefinitivement()) {
 
+		if (this.unJoueur.estMortDefinitivement()) {
 			contexte.drawImage(this.gameOver, 0, 0, null);
 			return true;
 		}

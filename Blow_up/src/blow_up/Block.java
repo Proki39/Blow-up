@@ -102,18 +102,20 @@ public class Block {
     }
 
     public void lancer() {
-        Random rand = new Random();
-        int min = 0;
-        int max = 9;
-        int nombreAleatoire = rand.nextInt(max - min + 1) + min;
-        this.x = nombreAleatoire*104;
         
-        if(Jeu.unMonde.blocPlusHaut()>99997){
-            this.y = 10400 - 10*104;
-        }else{
-            this.y = Jeu.unMonde.blocPlusHaut() - 10*104;
-        }
+        do{
+            Random rand = new Random();
+            int min = 0;
+            int max = 9;
+            int nombreAleatoire = rand.nextInt(max - min + 1) + min;
+            this.x = nombreAleatoire*104;
         
+            if(Jeu.unMonde.blocPlusHaut()>99997){
+               this.y = 10400 - 10*104;
+            }else{
+                this.y = Jeu.unMonde.blocPlusHaut() - 10*104;
+            }
+        }while(isCollidingBlock((int) this.getX(),(int) this.getY()+spd));
         
     }
 

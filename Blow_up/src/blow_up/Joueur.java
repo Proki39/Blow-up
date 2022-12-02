@@ -18,6 +18,7 @@ import java.awt.Graphics;
 import java.sql.DriverManager;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Random;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -38,10 +39,15 @@ public class Joueur {
     private float xDrawOffset = 36;
     private int nbLife;
     private int nbSaut;
-    private float gravity_valeur = (float) 3;
+    private float gravity_valeur = (float) 5;
     private float gravity_saut = gravity_valeur;
     private float vspd = 0;
     private float hauteur_saut = 35;
+    
+    private boolean respawning = false;
+    private int respawnTemps = 0;
+    private int respawnFrame = 0;
+    private boolean respawnSprite = false;
     
 
     public Joueur(String name) {
@@ -53,7 +59,7 @@ public class Joueur {
         this.haut = false;
         this.saut = false;
         this.name = name;
-        this.nbLife = 10;
+        this.nbLife = 3;
         this.nbSaut = 2;
         
         try {
@@ -86,7 +92,10 @@ public class Joueur {
 
     public void miseAJour() {
 
-        int speed = 10, speedX = 0, speedY = 0;
+        int speed = 13, speedX = 0, speedY = 0;
+        
+        //RESPAWN Instance
+        respawnCheck();
         
 
         if (this.gauche && !this.droite) {
@@ -109,11 +118,12 @@ public class Joueur {
             speedY+=speed; 
         if(this.haut && !this.bas)
             speedY-=2*speed;
-
+           
+        //SAUT
         if (this.saut && 
         //Colision.peutBouger((float) hitBox.x, (float) hitBox.y-150, hitBox.width, hitBox.height, Jeu.unMonde.blocos) &&
-        (!Colision.peutBouger((float) hitBox.x+10, (float) hitBox.y+10, hitBox.width, hitBox.height, Jeu.unMonde.blocos) || 
-        !Colision.peutBouger((float) hitBox.x-10, (float) hitBox.y+10, hitBox.width, hitBox.height, Jeu.unMonde.blocos) || 
+        (!Colision.peutBouger((float) hitBox.x+speed, (float) hitBox.y+speed, hitBox.width, hitBox.height, Jeu.unMonde.blocos) || 
+        !Colision.peutBouger((float) hitBox.x-speed, (float) hitBox.y+speed, hitBox.width, hitBox.height, Jeu.unMonde.blocos) || 
         hitBox.y + hitBox.height == 10400 ||  this.nbSaut !=0)) {
         	if( this.nbSaut !=0){
                 this.nbSaut = this.nbSaut -1;
@@ -153,12 +163,12 @@ public class Joueur {
                 }else  {
                     vspd = 0;
                     this.setNbSaut(2);
-                    gravity_saut = gravity_valeur;
                 }
 	}
         
         
-        if (Colision.peutBouger((float) hitBox.x, (float) hitBox.y+vspd,              //gravité
+        //gravité
+        if (Colision.peutBouger((float) hitBox.x, (float) hitBox.y+vspd,              
         hitBox.width, hitBox.height, Jeu.unMonde.blocos)) {
             
             hitBox.y = hitBox.y + vspd;
@@ -282,10 +292,23 @@ public class Joueur {
 
     public void respawn() {
         this.perdreUneVie();
-        this.setX(540);
-        this.setY(Camera.camera_y - 100);
-        vspd = 0;
-        //gravity_saut = (float) 0;
+        this.setNbSaut(2);
+        
+        //Respawn dans un lieux secure
+        do{
+            this.setY(Camera.camera_y - 100);
+            
+            Random rand = new Random();
+            int nombreAleatoire = rand.nextInt(8 - 2) + 1;
+            hitBox.x = nombreAleatoire*104;
+            
+        }while(!Colision.peutBouger((float) hitBox.x, (float) hitBox.y-200,              
+        hitBox.width, hitBox.height, Jeu.unMonde.blocos) && 
+        !Colision.peutBouger((float) hitBox.x, (float) hitBox.y,              
+        hitBox.width, hitBox.height, Jeu.unMonde.blocos));
+        
+        
+        respawning = true;
     }
 
   public void setnbLife(int a) {
@@ -296,5 +319,53 @@ public class Joueur {
         return name;
     }
     
+    public void respawnCheck() {
+        if(respawning){
+            vspd = 0;
+            gravity_saut = (float) 0;
+            
+            if(respawnTemps < 5){
+                this.gauche = false;
+                this.droite = false;
+            }
+            
+            //Sprite pisque
+            respawnFrame++;
+            respawnTemps++;
+            
+            if(respawnFrame > 1){
+                respawnSprite = !respawnSprite;
+                respawnFrame = 0;
+            }
+            
+            if(respawnSprite){
+                try {    	
+        		this.sprite = ImageIO.read(getClass().getClassLoader().getResource("resources/sprite_transp.png"));
+        		} catch (IOException ex) {
+        			Logger.getLogger(Joueur.class.getName()).log(Level.SEVERE, null, ex);
+        		}
+            }else{
+                try {    	
+        		this.sprite = ImageIO.read(getClass().getClassLoader().getResource("resources/sprite.png"));
+        		} catch (IOException ex) {
+        			Logger.getLogger(Joueur.class.getName()).log(Level.SEVERE, null, ex);
+        		}
+            }
+            
+            
+            if(this.gauche || this.droite || this.saut || respawnTemps > 30){
+            try {    	
+        	this.sprite = ImageIO.read(getClass().getClassLoader().getResource("resources/sprite.png"));
+        	} catch (IOException ex) {
+        		Logger.getLogger(Joueur.class.getName()).log(Level.SEVERE, null, ex);
+        	}
+            respawning = false;
+            respawnTemps = 0;
+            }
+            
+        }else{
+            gravity_saut = gravity_valeur;
+        }
+    }
 
 }

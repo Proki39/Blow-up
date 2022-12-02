@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.Random;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -30,10 +31,12 @@ public class FenetreDeJeu extends JFrame implements ActionListener, KeyListener 
     public Joueur Joueur;
     public Block unBlock;
     public static Random rand;
+    private String nomJoueur;
     
-    public FenetreDeJeu() {
+    public FenetreDeJeu(String nomJoueur){
         
         // initialisation de la fenetre
+        this.nomJoueur = nomJoueur;
         this.setSize(1040, 728); 
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
@@ -51,7 +54,7 @@ public class FenetreDeJeu extends JFrame implements ActionListener, KeyListener 
         this.contexte = this.framebuffer.createGraphics();
         
         //Creation du jeu
-        this.jeu = new Jeu();
+        this.jeu = new Jeu(this.nomJoueur);
         
         // Creation du Timer qui appelle this.actionPerformed() tous les 40 ms
         this.timer = new Timer(40, this);
@@ -118,8 +121,8 @@ public class FenetreDeJeu extends JFrame implements ActionListener, KeyListener 
 
     
     
-     public static void main(String[] args) {
-        FenetreDeJeu fenetre = new FenetreDeJeu();
+     public static void main(String[] args) throws IOException {
+        FenetreDeJeu fenetre = new FenetreDeJeu("test");
         fenetre.setVisible(true);
     }
 

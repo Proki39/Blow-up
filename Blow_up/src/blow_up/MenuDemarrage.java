@@ -106,7 +106,6 @@ public class MenuDemarrage extends javax.swing.JFrame {
 
     private void playActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playActionPerformed
         // création d'un nouveau joueur en cliquant sur play  
-        listeJoueur.joueurs.add(new Joueur(nomJoueur.getText()));
         //System.out.println(listeJoueur.joueurs);
         
         //ajout de ce joueur dans la base de donnée
@@ -123,7 +122,7 @@ public class MenuDemarrage extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         
-        FenetreDeJeu fenetre = new FenetreDeJeu();
+        FenetreDeJeu fenetre = new FenetreDeJeu(nomJoueur.getText());
         fenetre.setVisible(true);           
         this.setVisible(false);
             

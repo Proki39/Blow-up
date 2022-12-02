@@ -19,7 +19,7 @@ import java.sql.PreparedStatement;
  * @author lucienboulard
  */
 public class MenuDemarrage extends javax.swing.JFrame {
-
+    public static String name;
     /**
      * Creates new form MenuDemarrage
      */
@@ -117,6 +117,8 @@ public class MenuDemarrage extends javax.swing.JFrame {
             PreparedStatement requete = connexion.prepareStatement("INSERT INTO Joueur (pseudo, latitudeX, longitudeY, derniereConnexion) VALUES (?, 0, 10400, NOW())");
             requete.setString(1,nomJoueur.getText());
             requete.executeUpdate();
+            requete.close();
+            connexion.close();
             
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -135,7 +137,7 @@ public class MenuDemarrage extends javax.swing.JFrame {
     }//GEN-LAST:event_exitActionPerformed
 
     private void nomJoueurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomJoueurActionPerformed
-        // TODO add your handling code here:
+        name = nomJoueur.getText();// TODO add your handling code here:
     }//GEN-LAST:event_nomJoueurActionPerformed
 
     /**

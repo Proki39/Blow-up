@@ -23,7 +23,6 @@ import java.util.Random;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-
 /**
  * Exemple de classe lutin
  *

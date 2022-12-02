@@ -34,6 +34,10 @@ public class Joueur {
     private float xDrawOffset = 36;
     private int nbLife;
     private int nbSaut;
+    private float gravity_valeur = (float) 3;
+    private float gravity_saut = gravity_valeur;
+    private float vspd = 0;
+    private float hauteur_saut = 35;
     
 
     public Joueur(String name) {
@@ -45,7 +49,7 @@ public class Joueur {
         this.haut = false;
         this.saut = false;
         this.name = name;
-        this.nbLife = 3;
+        this.nbLife = 10;
         this.nbSaut = 2;
         
         try {
@@ -79,6 +83,7 @@ public class Joueur {
     public void miseAJour() {
 
         int speed = 10, speedX = 0, speedY = 0;
+        
 
         if (this.gauche && !this.droite) {
             speedX -=speed;
@@ -102,13 +107,16 @@ public class Joueur {
             speedY-=2*speed;
 
         if (this.saut && 
-        Colision.peutBouger((float) hitBox.x, (float) hitBox.y-150, hitBox.width, hitBox.height, Jeu.unMonde.blocos) &&
+        //Colision.peutBouger((float) hitBox.x, (float) hitBox.y-150, hitBox.width, hitBox.height, Jeu.unMonde.blocos) &&
         (!Colision.peutBouger((float) hitBox.x+10, (float) hitBox.y+10, hitBox.width, hitBox.height, Jeu.unMonde.blocos) || 
         !Colision.peutBouger((float) hitBox.x-10, (float) hitBox.y+10, hitBox.width, hitBox.height, Jeu.unMonde.blocos) || 
         hitBox.y + hitBox.height == 10400 ||  this.nbSaut !=0)) {
         	if( this.nbSaut !=0){
                 this.nbSaut = this.nbSaut -1;
-                this.setY(this.getY()- 150);
+                
+                //this.setY(this.getY()- 150);
+                vspd = -hauteur_saut;
+                
                 tempsSaut--;
                 if (tempsSaut <= 0) {
                         this.setSaut(false);
@@ -117,15 +125,46 @@ public class Joueur {
             }
         }
 
-        if (Colision.peutBouger((float) hitBox.x, (float) hitBox.y+10,              //gravité
+        
+        //Colision Verticale
+        if(!Colision.peutBouger((float) hitBox.x, (float) hitBox.y+vspd,
         hitBox.width, hitBox.height, Jeu.unMonde.blocos)) {
-            hitBox.y += 10;  
+			
+            int signVsp;
+                if(vspd >= 0)
+                {
+                    signVsp = 1;
+                }else  {
+                    signVsp = -1;
+                }
+                
+            while(Colision.peutBouger((float) hitBox.x, (float) hitBox.y+signVsp,
+            hitBox.width, hitBox.height, Jeu.unMonde.blocos)) {
+                hitBox.y = hitBox.y+signVsp;
+            }
+            
+            if(vspd < 0)
+                {
+                    vspd = 10;
+                }else  {
+                    vspd = 0;
+                    this.setNbSaut(2);
+                    gravity_saut = gravity_valeur;
+                }
+	}
+        
+        
+        if (Colision.peutBouger((float) hitBox.x, (float) hitBox.y+vspd,              //gravité
+        hitBox.width, hitBox.height, Jeu.unMonde.blocos)) {
+            
+            hitBox.y = hitBox.y + vspd;
+            vspd+=gravity_saut;
+            
         }
 
-        if (Colision.peutBouger((float) hitBox.x+speedX, (float) hitBox.y+speedY, 
+        if (Colision.peutBouger((float) hitBox.x+speedX, (float) hitBox.y, 
         hitBox.width, hitBox.height, Jeu.unMonde.blocos)){
             hitBox.x += speedX;
-            hitBox.y += speedY;
         }
 
         
@@ -226,6 +265,8 @@ public class Joueur {
         this.perdreUneVie();
         this.setX(540);
         this.setY(Camera.camera_y - 100);
+        vspd = 0;
+        //gravity_saut = (float) 0;
     }
 
   public void setnbLife(int a) {

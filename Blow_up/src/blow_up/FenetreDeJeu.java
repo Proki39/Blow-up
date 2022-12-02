@@ -31,7 +31,7 @@ public class FenetreDeJeu extends JFrame implements ActionListener, KeyListener 
     public Block unBlock;
     public static Random rand;
     
-    public FenetreDeJeu() {
+    public FenetreDeJeu(String nomJoueur) {
         
         // initialisation de la fenetre
         this.setSize(1040, 728); 
@@ -51,7 +51,7 @@ public class FenetreDeJeu extends JFrame implements ActionListener, KeyListener 
         this.contexte = this.framebuffer.createGraphics();
         
         //Creation du jeu
-        this.jeu = new Jeu();
+        this.jeu = new Jeu(nomJoueur);
         
         // Creation du Timer qui appelle this.actionPerformed() tous les 40 ms
         this.timer = new Timer(40, this);
@@ -119,7 +119,7 @@ public class FenetreDeJeu extends JFrame implements ActionListener, KeyListener 
     
     
      public static void main(String[] args) {
-        FenetreDeJeu fenetre = new FenetreDeJeu();
+        FenetreDeJeu fenetre = new FenetreDeJeu("test");
         fenetre.setVisible(true);
     }
 

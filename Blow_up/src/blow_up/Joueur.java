@@ -5,6 +5,7 @@
  */
 package blow_up;
 
+import com.sun.jdi.connect.spi.Connection;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -14,9 +15,12 @@ import javax.imageio.ImageIO;
 import java.awt.geom.Rectangle2D;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.sql.DriverManager;
 import java.util.List;
 import java.util.ArrayList;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 /**
  * Exemple de classe lutin
@@ -171,6 +175,21 @@ public class Joueur {
 
         Camera.camera_x = (int) this.getX()-1040/2;
         Camera.camera_y = (int) this.getY()-728/2;
+        // actualisation des coordonée des joueurs
+        try {
+            java.sql.Connection connexion =  DriverManager.getConnection("jdbc:mariadb://nemrod.ens2m.fr:3306/2022-2023_s1_vs1_tp1_blowup", "user_blowup", "RiFSA*oR!f*F3sPc");
+            PreparedStatement requete = connexion.prepareStatement("UPDATE Joueur SET latitudeX=?, longitudeY=? WHERE pseudo=?");
+            requete.setDouble(1,this.getX());
+            requete.setDouble(2,this.getY());
+            requete.setString(3,this.name);
+            requete.executeUpdate();
+            requete.close();
+            connexion.close();
+          
+        } catch (SQLException ex){
+            ex.printStackTrace();
+            
+        }
         
 
     }
@@ -271,6 +290,10 @@ public class Joueur {
 
   public void setnbLife(int a) {
         this.nbLife = a;
+    }
+
+    public String getName() {
+        return name;
     }
     
 

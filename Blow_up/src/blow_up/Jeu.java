@@ -30,6 +30,7 @@ public class Jeu {
 	private int score;
 	private BufferedImage victory, gameOver;
 	private Colision colision;
+	private Meteore meteore;
 
 	public Jeu(String nomJoueur){
 		this.uneCarte = new Carte();
@@ -38,6 +39,7 @@ public class Jeu {
 		this.unJoueur = new Joueur(nomJoueur);
 		this.score = 0;
 		this.colision = new Colision();
+		this.meteore = new Meteore();
 		try {
 			this.victory = ImageIO.read(getClass().getResource("../resources/victory.jpeg"));
 		} catch (IOException ex) {
@@ -94,6 +96,7 @@ public class Jeu {
 
 	public void rendu(Graphics2D contexte){
 		uneCarte.rendu(contexte);
+		meteore.rendu(contexte);
 		unJoueur.rendu(contexte);
                 dessinerAdverssaires(contexte);
 		unMonde.rendu(contexte);

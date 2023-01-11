@@ -126,6 +126,17 @@ public class Joueur {
         !Colision.peutBouger((float) hitBox.x-speed, (float) hitBox.y+speed, hitBox.width, hitBox.height, Jeu.unMonde.blocos) || 
         hitBox.y + hitBox.height == 10400 ||  this.nbSaut !=0)) {
         	if( this.nbSaut !=0){
+                    
+                    //Sprite DoubleSaut
+                    if ( this.nbSaut == 1){
+                        try {
+                            this.sprite = ImageIO.read(getClass().getClassLoader().getResource("resources/sprite_jump.png"));
+                        } catch (IOException ex) {
+                            Logger.getLogger(Joueur.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                    
+                    
                 this.nbSaut = this.nbSaut -1;
                 
                 //this.setY(this.getY()- 150);

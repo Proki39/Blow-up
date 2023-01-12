@@ -113,7 +113,7 @@ public class Block {
             if(Jeu.unMonde.blocPlusHaut()>99997){
                this.y = 10400 - 10*104;
             }else{
-                this.y = Jeu.unMonde.blocPlusHaut() - 10*104;
+                this.y = Camera.camera_y - 10*104;
             }
         }while(isCollidingBlock((int) this.getX(),(int) this.getY()+spd));
         

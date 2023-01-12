@@ -98,7 +98,7 @@ public class Jeu {
 		uneCarte.rendu(contexte);
 		meteore.rendu(contexte);
 		unJoueur.rendu(contexte);
-                dessinerAdverssaires(contexte);
+                //dessinerAdversaires(contexte);
 		unMonde.rendu(contexte);
 		unRectTimer.rendu(contexte);
 		contexte.drawString("Score : " + score, 20, 40);
@@ -146,7 +146,7 @@ public class Jeu {
 
 		return false;
 	}
-        public void dessinerAdverssaires(Graphics2D contexte){
+        public void dessinerAdversaires(Graphics2D contexte){
             try{
             java.sql.Connection connexion =  DriverManager.getConnection("jdbc:mariadb://nemrod.ens2m.fr:3306/2022-2023_s1_vs1_tp1_blowup", "user_blowup", "RiFSA*oR!f*F3sPc");
             PreparedStatement requete = connexion.prepareStatement("SELECT latitudeX , longitudeY FROM Joueur WHERE pseudo <> ?");
@@ -155,7 +155,6 @@ public class Jeu {
             
             while(resultat.next()){
                 int y = (int) resultat.getDouble("longitudeY");
-                System.out.println(y);
                 int x = (int) resultat.getDouble("latitudeX");
                 contexte.drawImage(this.sprite, (int) (x), (int) (y)- Camera.camera_y, null);
                 

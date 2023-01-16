@@ -98,7 +98,7 @@ public class Jeu {
 		uneCarte.rendu(contexte);
 		meteore.rendu(contexte);
 		unJoueur.rendu(contexte);
-                //dessinerAdversaires(contexte);
+                dessinerAdversaires(contexte);
 		unMonde.rendu(contexte);
 		unRectTimer.rendu(contexte);
 		contexte.drawString("Score : " + score, 20, 40);

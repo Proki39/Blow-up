@@ -145,7 +145,6 @@ public class Carte {
 
     public void miseAJour() {
         
-        //System.out.println(positionJoueur);  
     }
 
 

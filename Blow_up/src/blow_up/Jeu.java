@@ -59,38 +59,7 @@ public class Jeu {
         }
 
 	
-//        public void dessinerAdverssaires(Graphics2D contexte) throws SQLException{
-//            try{
-//            java.sql.Connection connexion =  DriverManager.getConnection("jdbc:mariadb://nemrod.ens2m.fr:3306/2022-2023_s1_vs1_tp1_blowup", "user_blowup", "RiFSA*oR!f*F3sPc");
-//            PreparedStatement requete = connexion.prepareStatement("SELECT latitudeX , longitudeY FROM Joueur WHERE pseudo <> ?");
-//            requete.setString(1,unJoueur.getName());
-//            ResultSet resultat = requete.executeQuery();
-//            
-//            while(resultat.next()){
-//                int y = (int) resultat.getDouble("longitudeY");
-//                int x = (int) resultat.getDouble("latitudeX");
-//                try {
-//        	this.sprite = ImageIO.read(getClass().getClassLoader().getResource("resources/sprite.png"));            
-//        	} catch (IOException ex) {
-//                    Logger.getLogger(Joueur.class.getName()).log(Level.SEVERE, null, ex);
-//                }
-//                try {
-//                    this.coeur = ImageIO.read(getClass().getClassLoader().getResource("resources/Coeur1.png"));
-//                } catch (IOException ex) {
-//                Logger.getLogger(Joueur.class.getName()).log(Level.SEVERE, null, ex);
-//                }
-//                contexte.drawImage(this.sprite, (int) (x), (int) (y), null); 
-//                
-//            }
-//            requete.close();
-//            connexion.close();
-//          
-//        } catch (SQLException ex){
-//            ex.printStackTrace();
-//            
-//        }
-//        }
-            
+
         
         
 
@@ -102,11 +71,6 @@ public class Jeu {
 		unMonde.rendu(contexte);
 		unRectTimer.rendu(contexte);
 		contexte.drawString("Score : " + score, 20, 40);
-		// 1. Rendu du décor
-		// uneCarte.rendu(contexte);
-		// 2. Rendu des sprites
-		// uneBlock.rendu(contexte);
-		// 3. Rendu des textes
 
 	}
 
@@ -117,10 +81,7 @@ public class Jeu {
 		unJoueur.miseAJour();
                 
 		this.score = 10400 - (int) this.unJoueur.getY();
-		// 1. Mise à jour de l’avatar en fonction des commandes des joueurs
-		// 2. Mise à jour des autres éléments (objets, monstres, etc.)
-		// uneBlock.miseAJour();
-		// 3. Gérer les interactions (collisions et autres règles)
+
 	}
 
 	public boolean estTermine(Graphics2D contexte) {

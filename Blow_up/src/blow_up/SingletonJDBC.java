@@ -13,9 +13,7 @@ import javax.swing.JOptionPane;
  */
 public final class SingletonJDBC {
 
-    // La classe est finale, car un singleton n'est pas censé avoir d'héritier.
-    // L'utilisation du mot clé volatile empêche les effets de bord dus aux copies 
-    // de l'instance qui peuvent être modifiées dans le thread principal.
+
     private static volatile SingletonJDBC instance = null;
 
     // D'autres attributs, classiques et non statiques.
